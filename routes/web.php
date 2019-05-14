@@ -43,3 +43,9 @@ Route::get('home', 'SearchController@index')->name('searchResult');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 
 Route::delete('/images/{id}', 'ImageController@delete');
+
+// Route vers la page mon profil
+Route::get('profil', 'UserController@profil')->name('profil');
+
+// Route vers la page mes images
+Route::get('user_images', 'ImageController@user_images')->name('user_images');

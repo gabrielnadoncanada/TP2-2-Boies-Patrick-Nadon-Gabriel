@@ -29,6 +29,21 @@ class ImageController extends Controller
         return View('/', compact('images'));
     }
 
+
+    /**
+     * Display current user uploaded images
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function user_images(){
+        $user_id = auth()->id();
+        
+        $images = Image::where('user_id', 1);
+       
+        return View('user.image', compact('images'));
+    }
+
+    
     public function searchResult(Request $request)
     {
         if ($request->post('location') == ""){
