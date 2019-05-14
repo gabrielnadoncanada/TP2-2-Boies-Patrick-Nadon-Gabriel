@@ -150,26 +150,26 @@ class ImageController extends Controller
         return redirect ('/images');
     }
 
-    public function flag(Image $image, Request $request, $id)
-    {
+    // public function flag(Image $image, Request $request, $id)
+    // {
        
-        $images = Image::find($id);
+    //     $images = Image::find($id);
 
-        $user = $request->user()->id;
+    //     $user = $request->user()->id;
 
-        $images->users()->syncWithoutDetaching([$user => ['alert' =>1]]);
-        return response()->json(['id' => $image->id, 'message' => 'L\'image a bien ete reportée'], 200);
+    //     $images->users()->syncWithoutDetaching([$user => ['alert' =>1]]);
+    //     return response()->json(['id' => $image->id, 'message' => 'L\'image a bien ete reportée'], 200);
         
       
-    }
+    // }
 
-    public function getReportedImage($images)
-    {
-        $images->transform(function($image) {
-            $number = $image->users->where('pivot.alert', 1)->count();
-            $image->approved = ($number >= 2) ? 0 : 1;
-            return $image;
-        });
-        return $images;
-    }
+    // public function getReportedImage($images)
+    // {
+    //     $images->transform(function($image) {
+    //         $number = $image->users->where('pivot.alert', 1)->count();
+    //         $image->approved = ($number >= 2) ? 0 : 1;
+    //         return $image;
+    //     });
+    //     return $images;
+    // }
 }

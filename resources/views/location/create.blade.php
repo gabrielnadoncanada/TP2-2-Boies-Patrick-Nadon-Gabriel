@@ -1,4 +1,4 @@
-@extends('layouts.form')
+
 @section('card')
     @component('components.card')
         @slot('title')
