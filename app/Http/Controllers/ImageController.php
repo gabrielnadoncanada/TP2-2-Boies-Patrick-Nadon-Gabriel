@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Location;
 use App\Models\Image;
 use App\Repositories\ImageRepository;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class ImageController extends Controller
 {
@@ -22,10 +23,9 @@ class ImageController extends Controller
         $this->repository = $repository;
     }
 
-
     public function index()
     {
-        $images = Image::inRandomOrder()->paginate(6);
+        $images = Image::inRandomOrder()->paginate();
         return View('/', compact('images'));
     }
 
@@ -42,8 +42,31 @@ class ImageController extends Controller
             }
           
           else{
-                $images = Image::where('location_id', $location->id)->orderBy('created_at', 'DESC')->paginate(3);
+                $images = Image::where('location_id', $location->id)->orderBy('created_at', 'DESC')->get();
                 $images = $this->getReportedImage($images)->where('approved', 1);
+
+                $pageStart = request()->get('page', 1); // récupère le numéro de page dans l'url
+                $perPage = 6; // Défini le nombre d'image par page
+                
+                // Défini le décalage, si on est sur la 1ere page, $offset = 0
+                //si on est sur la 2eme page, $offset = 6
+                $offset = ($pageStart * $perPage) - $perPage; 
+                
+                // Instancie la class Paginator
+                $images = new Paginator(
+                    array_slice($images->all(), $offset,  $perPage, true),
+                    $images->count(),
+                    $perPage,
+                    null, 
+                    [
+                        'path'  => $request->url(),
+                        'query' => $request->query(),
+        ]
+    );
+     
+    // Ajoute à l'objet $images le contenu de la recherche 
+    // si on est sur une page de résultats de recherche
+    $images->appends(['search' => $request->post('search')]);
             }
 
         return View('searchResult', compact('images'));

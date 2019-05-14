@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index(ImageRepository $repository)
     {
         $images = $repository->getAllImages ();
-        // $images = $this->getReportedImage($images)->where('approved', 1);
+        $images = $this->getReportedImage($images)->where('approved', 1);
         return view ('home', compact ('images'));
 
     }
