@@ -49,7 +49,7 @@
                         <button type="submit">Sigaler l'image</button>
 
                            </form>
-
+                           @include('partials.delete')
                         </div>
                         
                     </div>

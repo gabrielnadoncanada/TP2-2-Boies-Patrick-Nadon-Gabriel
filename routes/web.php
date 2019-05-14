@@ -38,3 +38,4 @@ Route::resource('location', 'LocationController');
 Route::get('home', 'SearchController@index')->name('searchResult');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
 
+Route::delete('/images/{id}', 'ImageController@delete');

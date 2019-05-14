@@ -143,11 +143,10 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-        $images->delete();
-
-        return redirect ('/images');
+        $image = Image::destroy($id);
+        return redirect('/');
     }
 
     // public function flag(Image $image, Request $request, $id)
