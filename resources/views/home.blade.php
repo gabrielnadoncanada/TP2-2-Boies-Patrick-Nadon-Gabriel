@@ -13,9 +13,7 @@
         @isset($user)
             <h2 class="text-title mb-3">{{ __('Photos de ') . $user->name }}</h2>
         @endif
-        <div class="d-flex justify-content-center mb-3">
-            {{ $images->links() }}
-        </div>
+        
         <div class="card-columns">
             @foreach($images as $image)
                 <div class="card" id="image{{ $image->id }}">
