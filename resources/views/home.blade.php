@@ -15,7 +15,7 @@
         @endif
         
         <div class="d-flex justify-content-center mb-3">
-            {{ $images->links() }}
+           
         </div>
         <div class="card-columns">
             @foreach($images as $image)
@@ -55,7 +55,7 @@
             
         </div>
         <div class="d-flex justify-content-center mt-3">
-            {{ $images->links() }}
+          
         </div>
     </main>
 @endsection

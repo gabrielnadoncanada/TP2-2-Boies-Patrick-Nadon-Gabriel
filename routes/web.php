@@ -29,6 +29,10 @@ Route::middleware ('auth')->group (function () {
     Route::resource ('image', 'ImageController', [
         'only' => ['create', 'store', 'destroy', 'update']
     ]);
+    Route::resource ('profile', 'ProfileController', [
+        'only' => ['edit', 'update', 'destroy', 'show'],
+        'parameters' => ['profile' => 'user']
+    ]);
 });
 
 Route::post('searchResult', 'ImageController@searchResult');

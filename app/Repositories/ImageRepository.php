@@ -30,6 +30,7 @@ class ImageRepository
 
         public function getAllImages()
     {
-        return Image::inRandomOrder()->paginate (6);
+        return Image::inRandomOrder()->paginate(10);
     }
 }
+
