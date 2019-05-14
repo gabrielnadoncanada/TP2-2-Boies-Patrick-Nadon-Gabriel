@@ -10,13 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */ 
-Auth::routes(['verify' => true]);
-
-Route::put('imagesFlag/{id}', 'ImageController@flag');
-
 Route::get('/', function () {
     return view('home');
 });
+
+Auth::routes();
+
+Auth::routes(['verify' => true]);
+
+Route::put('imagesFlag/{id}', 'ImageController@flag');
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 // Route::get('/', 'HomeController@index')->name('home');
