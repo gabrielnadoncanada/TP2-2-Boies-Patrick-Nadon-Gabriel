@@ -15,7 +15,7 @@ class CreateImageUser extends Migration
     {
         Schema::create('image_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->boolean('alert')->unsigned()->default(0);
+            $table->integer('alert')->unsigned()->default(0);
             $table->BigInteger('user_id')->unsigned()->index();
             $table->BigInteger('image_id')->unsigned()->index();
             $table->timestamps();
