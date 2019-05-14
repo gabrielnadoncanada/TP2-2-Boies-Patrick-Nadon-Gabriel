@@ -30,6 +30,6 @@ class Image extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot('alert');
+        return $this->belongsToMany(User::class)->withPivot('alert')->withTimestamps();
     }
 }

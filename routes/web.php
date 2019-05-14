@@ -18,7 +18,7 @@ Auth::routes();
 
 Auth::routes(['verify' => true]);
 
-Route::put('imagesFlag/{id}', 'ImageController@flag');
+Route::get('imagesFlag/{id}', 'ImageController@flag');
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 // Route::get('/', 'HomeController@index')->name('home');

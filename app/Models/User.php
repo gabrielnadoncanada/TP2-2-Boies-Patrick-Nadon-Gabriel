@@ -57,11 +57,10 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->attributes['name'] == strtoupper($value);
     }
 
-    //     public function scopeLatestWithUser($query)
-    // {
-    //     $user = auth()->user();
-    //         return $query->with ('user')->latest ();
-    // }
+        public function scopeLatestWithUser($query)
+    {
+        $user = auth()->user();
+            return $query->with ('user')->latest ();
+    }
         
-    
 }

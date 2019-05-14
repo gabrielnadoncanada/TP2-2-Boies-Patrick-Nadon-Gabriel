@@ -31,9 +31,6 @@ class SearchController extends Controller
           $result = Location::where('name', 'LIKE', '%'. $search. '%')->get();
  
           return response()->json($result);
-
-        //   else
-        // return view ( 'home' )->withMessage ( 'No Details found. Try to search again !' );
             
     } 
 }
