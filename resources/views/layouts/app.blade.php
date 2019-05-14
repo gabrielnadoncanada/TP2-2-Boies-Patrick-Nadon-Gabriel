@@ -20,8 +20,7 @@
     <div id="app">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-secondary">
             <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Laravel-TP2') }}</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -45,10 +44,43 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a>
                     </li>
+                    @endguest
+
+                    @if(Auth::check() && Auth::user()->role == "admin")
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="">
+                                @lang('Mon profil')
+                            </a>
+                            <a class="dropdown-item" href="">
+                                @lang('Liste des utilisateurs')
+                            </a>
+                            <a class="dropdown-item" href="">
+                                @lang('Liste des lieux')
+                            </a>
+                            <a class="dropdown-item" href="">
+                                @lang('Images innapropriés')
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                @lang('Me déconnecter')
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                     @else
+                    @auth
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
@@ -85,6 +117,26 @@
             @if(session()->has('message'))
             <div class="alert alert-success">
                 {{ session()->get('message') }}
+                            <a class="dropdown-item" href="">
+                                @lang('Mon profil')
+                            </a>
+                            <a class="dropdown-item" href="">
+                                @lang('Mes photos')
+                            </a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                @lang('Me déconnecter')
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endauth
+                    @endif
+
+                </ul>
             </div>
             @endif
 
@@ -116,6 +168,7 @@
         })
 
     </script>
+        
 </body>
 
 </html>
