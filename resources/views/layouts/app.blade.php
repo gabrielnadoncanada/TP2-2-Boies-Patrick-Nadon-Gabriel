@@ -80,7 +80,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('user_edit', Auth::user()->id) }}">
+                            <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">
                                 @lang('Mon profil')
                             </a>
                             <a class="dropdown-item" href="{{ route('user_images', Auth::user()->id) }}">

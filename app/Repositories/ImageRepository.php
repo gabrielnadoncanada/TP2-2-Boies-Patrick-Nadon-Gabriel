@@ -8,29 +8,22 @@ use Intervention\Image\Facades\Image as InterventionImage;
 
 class ImageRepository
 {
-
-        public function store($request)
+    public function store($request)
     {
-
-        if ($request->image){
-            $path = basename ($request->image->store('images'));
-
+        if ($request->image) {
+            $path = basename($request->image->store('images'));
             // Save thumb
-            $image = InterventionImage::make ($request->image)->widen (500)->encode ();
-            Storage::put ('thumbs/' . $path, $image);
+            $image = InterventionImage::make($request->image)->widen(500)->encode();
+            Storage::put('thumbs/' . $path, $image);
         }
-        
         Image::create([
             'location_id' => request('location_id'),
             'user_id' => auth()->id(),
-            'name' => $path    
+            'name' => $path
         ]);
-    
     }
-
-        public function getAllImages()
+    public function getAllImages()
     {
         return Image::inRandomOrder()->paginate(10);
     }
 }
-

@@ -25,22 +25,5 @@ class AdminController extends Controller
         return view('admin.location', compact('locations'));
     }
 
-     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        if (User::find($id)) {
-            $user = User::find($id);
-            $user = $user->role;
-            dd($user);
-            $user->delete();
-            return redirect('/')->with('status', __('Votre profil a été détruit'));
-        } else {
-            return redirect('/');
-        }
-    }
+    
 }

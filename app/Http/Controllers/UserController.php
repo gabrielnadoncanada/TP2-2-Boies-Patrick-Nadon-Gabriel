@@ -8,10 +8,6 @@ use App\Models\User;
 class UserController extends Controller
 {
 
-    // public function __construct()
-    // {
-    //     $this->middleware('ajax')->only('destroy');
-    // }
 
     /**
      * Display a listing of the resource.
@@ -112,8 +108,11 @@ class UserController extends Controller
     {
         if (User::find($id)) {
             $user = User::find($id);
+            if($user->role == 'admin'){
+                return back()->with('status', __('Vous ne pouvez pas supprimer un profil administrateur'));
+            }
             $user->delete();
-            return redirect('/')->with('status', __('Votre profil a été détruit'));
+            return redirect('/')->with('status', __('Le profil a été détruit'));
         } else {
             return redirect('/');
         }
