@@ -53,13 +53,10 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="">
-                                @lang('Mon profil')
-                            </a>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('admin.users') }}">
                                 @lang('Liste des utilisateurs')
                             </a>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('admin.locations') }}">
                                 @lang('Liste des lieux')
                             </a>
                             <a class="dropdown-item" href="">

@@ -69,9 +69,24 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->update ([
-            'email' => $request->email
-        ]);
+        if($request->email){
+            $user->update ([
+                'email' => $request->email,
+                
+            ]);
+        }
+        if($request->name){
+            $user->update ([
+                'name' => $request->name,
+                
+            ]);
+        }
+        if($request->password){
+            $user->update ([
+                'password' =>  bcrypt($request->password)
+                
+            ]);
+        }
         return back ()->with ('ok', __ ('Le profil a bien été mis à jour'));
     }
 

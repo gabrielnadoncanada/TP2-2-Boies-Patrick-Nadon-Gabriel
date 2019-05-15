@@ -22,8 +22,9 @@ Route::get('imagesFlag/{id}', 'ImageController@flag');
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 // Route::get('/', 'HomeController@index')->name('home');
-Route::get('/users', 'AdminController@index')->name('admin')->prefix('admin')->middleware('admin');
+Route::get('/users', 'AdminController@index')->name('admin.users')->prefix('admin')->middleware('admin');
 
+Route::get('/locations', 'AdminController@locations')->name('admin.locations')->prefix('admin')->middleware('admin');
 
 Route::middleware ('auth')->group (function () {
     Route::resource ('image', 'ImageController', [

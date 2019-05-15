@@ -35,11 +35,8 @@ class ImageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function user_images($id){
-        $id = auth()->id();
-        
-        $images = Image::where('user_id', $id)->get();
-        
+    public function user_images($id){ 
+        $images = Image::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
         return View('profiles.image', compact('images'));
     }
 
