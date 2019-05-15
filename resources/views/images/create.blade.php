@@ -7,13 +7,10 @@
 
 <form method="POST" action="{{ route('image.store') }}" enctype="multipart/form-data">
     @csrf
-
     <div class="form-group{{ $errors->has('image') ? ' is-invalid' : '' }}">
         <div class="custom-file">
-            <input type="file" id="image" name="image"
-                class="{{ $errors->has('image') ? ' is-invalid ' : '' }}custom-file-input" required>
+            <input type="file" id="image" name="image" class="{{ $errors->has('image') ? ' is-invalid ' : '' }}custom-file-input" required>
             <label class="custom-file-label" for="image"></label>
-
             @if ($errors->has('image'))
             <div class="invalid-feedback">
                 {{ $errors->first('image') }}
@@ -22,7 +19,6 @@
         </div>
         <br>
     </div>
-
     <div class="form-group">
         <img id="preview" class="img-fluid" src="#" alt="">
     </div>
@@ -35,14 +31,12 @@
         </select>
         <!--  -->
     </div>
-
     @component('components.button')
     @lang('Soumettre')
     @endcomponent
 </form>
 @endcomponent
 @endsection
-
 @section('script')
 <script>
     $(() => {
@@ -58,18 +52,17 @@
             }
         })
     })
-
 </script>
 @endsection
 
 @if (session('ok'))
-    <div class="container mt-5">
-        <div class="alert alert-dismissible alert-success fade show" role="alert">
-            {{ session('ok') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+<div class="container mt-5">
+    <div class="alert alert-dismissible alert-success fade show" role="alert">
+        {{ session('ok') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
+</div>
 @endif
 @yield('content')
