@@ -30,9 +30,9 @@ Route::middleware ('auth')->group (function () {
     Route::resource ('image', 'ImageController', [
         'only' => ['create', 'store', 'destroy', 'update']
     ]);
-    Route::resource ('profile', 'ProfileController', [
+    Route::resource ('user', 'UserController', [
         'only' => ['edit', 'update', 'destroy', 'show'],
-        'parameters' => ['profile' => 'user']
+        'parameters' => ['user' => 'user']
     ]);
 });
 
@@ -45,6 +45,6 @@ Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete'
 
 Route::delete('/images/{id}', 'ImageController@delete');
 
-Route::get('/profile/{id}/edit', 'ProfileController@edit')->name('profile_edit');
-Route::get('/profile/{id}/images', 'ImageController@user_images')->name('user_images');
-Route::get('/profile/{id}/destroy', 'ProfileController@destroy')->name('profile_destroy');
+Route::get('/user/{id}/edit', 'UserController@edit')->name('user_edit');
+Route::get('/user/{id}/images', 'ImageController@user_images')->name('user_images');
+Route::get('/user/{id}/destroy', 'UserController@destroy')->name('user_destroy');

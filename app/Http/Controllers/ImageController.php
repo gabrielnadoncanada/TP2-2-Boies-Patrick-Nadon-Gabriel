@@ -37,7 +37,7 @@ class ImageController extends Controller
      */
     public function user_images($id){ 
         $images = Image::where('user_id', $id)->orderBy('created_at', 'DESC')->get();
-        return View('profiles.image', compact('images'));
+        return View('user.image', compact('images'));
     }
 
     
@@ -145,7 +145,6 @@ class ImageController extends Controller
     public function update(Request $request, $id)
     {
         $images->update(request()->all());
-
         return redirect ('/images');
     }
 
@@ -163,15 +162,10 @@ class ImageController extends Controller
 
     public function flag(Image $image, Request $request, $id)
     {
-       
         $images = Image::find($id);
-
         $user = $request->user()->id;
-
         $images->users()->syncWithoutDetaching([$user => ['alert' =>1]]);
         return response()->json(['id' => $image->id, 'message' => 'L\'image a bien ete reportée'], 200);
-        
-      
     }
 
     public function getReportedImage($images)

@@ -18,7 +18,7 @@ class SearchController extends Controller
     {
         return view('searchResult');
     }
-  
+
     /**
      * Show the form for creating a new resource.
      *
@@ -27,11 +27,7 @@ class SearchController extends Controller
     public function autocomplete(Request $request)
     {
         $search = $request->get('term');
-      
-          $result = Location::where('name', 'LIKE', '%'. $search. '%')->get();
- 
-          return response()->json($result);
-            
-    } 
+        $result = Location::where('name', 'LIKE', '%' . $search . '%')->get();
+        return response()->json($result);
+    }
 }
-

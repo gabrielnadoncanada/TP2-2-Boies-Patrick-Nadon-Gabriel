@@ -28,8 +28,8 @@
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->email_verified_at }}</td>
                                 <td>0</td>
-                                <td><button type="sumbit">Modifier</button></td>
-                                <td><button type="sumbit">Delete</button></td>
+                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">@lang('Modifier')</button></td>
+                                <td><a href="{{ route('user_destroy', $user->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true">@lang('Supprimer')</a></td>
                                 
                             </tr>
                             @endforeach

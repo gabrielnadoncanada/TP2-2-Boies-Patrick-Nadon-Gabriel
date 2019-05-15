@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
-class ProfileController extends Controller
+class UserController extends Controller
 {
-        
+
     // public function __construct()
     // {
     //     $this->middleware('ajax')->only('destroy');
@@ -63,7 +63,7 @@ class ProfileController extends Controller
      */
     public function edit(User $user)
     {
-        return view ('profiles.edit', compact ('user'));
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -81,30 +81,27 @@ class ProfileController extends Controller
             'password' => ['string', 'min:6', 'confirmed'],
         ]);
 
-        if($request->email){
-            $user->update ([
+        if ($request->email) {
+            $user->update([
                 'email' => $request->email,
-                
+
             ]);
-           
         }
-        if($request->name){
-            $user->update ([
+        if ($request->name) {
+            $user->update([
                 'name' => $request->name,
-                
+
             ]);
-            
         }
-        if($request->password){
-            $user->update ([
+        if ($request->password) {
+            $user->update([
                 'password' =>  bcrypt($request->password)
-                
+
             ]);
-            
         }
-        return back ()->with ('status', __ ('Votre profil a bien été mis à jour'));
+        return back()->with('status', __('Votre profil a bien été mis à jour'));
     }
-    // return redirect('/')->with('status', __
+
     /**
      * Remove the specified resource from storage.
      *
@@ -113,18 +110,11 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        // if($id != Auth::user()->id){
-        //      Notification::container()->error('You are not allowed to delete that user. WTF.');
-        //                  return Redirect::route('/');
-                       
-        // }
-        if(User::find($id)){
+        if (User::find($id)) {
             $user = User::find($id);
             $user->delete();
-            // Notification::container()->success('Your account has been permanently removed from the system. Sorry to see you go!');
-            return redirect('/')->with ('status', __ ('Votre profil a été détruit'));
+            return redirect('/')->with('status', __('Votre profil a été détruit'));
         } else {
-            
             return redirect('/');
         }
     }
