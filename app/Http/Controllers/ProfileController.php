@@ -8,10 +8,10 @@ use App\Models\User;
 class ProfileController extends Controller
 {
         
-    public function __construct()
-    {
-        $this->middleware('ajax')->only('destroy');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('ajax')->only('destroy');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -113,8 +113,19 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize ('manage', $user);
-        $user->delete();
-        return response ()->json ();
+        // if($id != Auth::user()->id){
+        //      Notification::container()->error('You are not allowed to delete that user. WTF.');
+        //                  return Redirect::route('/');
+                       
+        // }
+        if(User::find($id)){
+            $user = User::find($id);
+            $user->delete();
+            // Notification::container()->success('Your account has been permanently removed from the system. Sorry to see you go!');
+            return redirect('/')->with ('status', __ ('Votre profil a été détruit'));
+        } else {
+            
+            return redirect('/');
+        }
     }
 }

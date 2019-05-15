@@ -47,3 +47,4 @@ Route::delete('/images/{id}', 'ImageController@delete');
 
 Route::get('/profile/{id}/edit', 'ProfileController@edit')->name('profile_edit');
 Route::get('/profile/{id}/images', 'ImageController@user_images')->name('user_images');
+Route::get('/profile/{id}/destroy', 'ProfileController@destroy')->name('profile_destroy');

@@ -2,6 +2,22 @@
 
 @section('content')
 <div class="container">
+    <div class="container">
+
+                @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+                @endif
+
+                @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+                @endif
+                @yield('content')
+
+            </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

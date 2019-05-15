@@ -4,7 +4,7 @@
         @slot('title')
             @lang('Mon profil')
             
-            <a href="{{ route('profile.destroy', $user->id) }}" class="ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true"> @lang('Supprimer mon compte')</a>
+            <a href="{{ route('profile_destroy', $user->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true"> @lang('Supprimer mon compte')</a>
         @endslot
         <label for="email">Adresse email</label> 
         <input id="email" type="email" class="text-white form-control-plaintext{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" readonly>
@@ -73,7 +73,7 @@
      $('.delete').submit((e) => {
         e.preventDefault();
         let href = $(e.currentTarget).attr('action')
-        if (confirm('Voulez-vous vraiment signaler?')){
+        if (confirm('Voulez-vous vraiment suprimer?')){
             $.ajax({
                 url: href,
                 type: 'GET'
@@ -82,7 +82,7 @@
                 alert(data.message)
             })
             .fail((data) => {
-                alert("Échec du signalement de l'image")
+                alert("Échec du signalement de la supression de l'image")
             })
         }
  
