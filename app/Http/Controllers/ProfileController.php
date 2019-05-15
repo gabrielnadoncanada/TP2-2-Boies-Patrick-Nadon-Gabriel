@@ -69,6 +69,7 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        // $this->authorize ('manage', '$user');
         if($request->email){
             $user->update ([
                 'email' => $request->email,
