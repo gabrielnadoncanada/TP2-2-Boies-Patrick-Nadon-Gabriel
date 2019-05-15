@@ -1,3 +1,3 @@
-<button type="submit" class="btn btn-danger ">
+<button type="submit" class="btn {{ $class }}">
     {{ $slot }}
 </button>

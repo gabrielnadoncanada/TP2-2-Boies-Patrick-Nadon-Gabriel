@@ -5,6 +5,12 @@
             @lang('Mon profil')
             
             <a href="{{ route('user_destroy', $user->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true"> @lang('Supprimer mon compte')</a>
+            @component('components.modal.button')
+                @slot('class')
+                    @lang('btn-warning')
+                @endslot
+                @lang('Modifier')
+            @endcomponent
         @endslot
         <label for="email">Adresse email</label> 
         <input id="email" type="email" class="text-white form-control-plaintext{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" readonly>
@@ -12,13 +18,14 @@
         <label for="nane">Nom d'utilisateur</label> 
         <input id="name" type="text" class="text-white form-control-plaintext{{ $errors->has('name') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->name }}" readonly>
     @endcomponent
+@endsection
 
-    @component('components.card')
-        @slot('title')
-            @lang('Modifer le profil')
-            <a href="{{ route('user.destroy', $user->id) }}" class="btn btn-danger btn-sm pull-right invisible" role="button" aria-disabled="true"><i class="fas fa-angry fa-lg"></i> @lang('Supprimer mon compte')</a>
-        @endslot
-        <form method="POST" action="{{ route('user.update', $user->id) }}">
+@component('components.modal.modal')
+    @slot('title')
+        @lang('Modifier le profil')
+    @endslot
+    @slot('content')
+    <form method="POST" action="{{ route('user.update', $user->id) }}">
             @csrf
             @method('PUT')
             @include('partials.form-group', [
@@ -30,6 +37,9 @@
             ])
           
             @component('components.button')
+                @slot('class')
+                    @lang('btn-primary')
+                @endslot
                 @lang('Envoyer')
             @endcomponent
         </form>
@@ -46,6 +56,9 @@
             ])
           
             @component('components.button')
+                @slot('class')
+                    @lang('btn-primary')
+                @endslot
                 @lang('Envoyer')
             @endcomponent
         </form>
@@ -62,12 +75,14 @@
             ])
           
             @component('components.button')
+                @slot('class')
+                    @lang('btn-primary')
+                @endslot
                 @lang('Envoyer')
             @endcomponent
-        </form>
-    @endcomponent
-@endsection
-
+        </form>  
+    @endslot
+@endcomponent
 @section('script')
     <script>
      $('.delete').submit((e) => {
@@ -87,6 +102,14 @@
         }
  
     })
-
+    $('#modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
 </script>
 @endsection
