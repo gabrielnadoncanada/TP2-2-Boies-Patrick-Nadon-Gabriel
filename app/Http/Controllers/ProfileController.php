@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Users;
+use App\Models\User;
 
-class ProfileControler extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -67,9 +67,12 @@ class ProfileControler extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->update ([
+            'email' => $request->email
+        ]);
+        return back ()->with ('ok', __ ('Le profil a bien été mis à jour'));
     }
 
     /**

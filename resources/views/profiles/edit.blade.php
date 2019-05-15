@@ -1,6 +1,4 @@
 @extends('layouts.form')
-
-@endsection
 @section('card')
     @component('components.card')
         @slot('title')
@@ -25,5 +23,4 @@
     @endcomponent
 @endsection
 
-    @include('partials.script-delete', ['text' => __('Vraiment supprimer votre compte ?'), 'return' => 'home'])
-@endsection
+   

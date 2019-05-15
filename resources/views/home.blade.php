@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <main class="container">
-    
+
         <form class="mb-5" method="POST" action="/searchResult">
         @csrf
             <input class=" form-control" id="location" name="location" placeholder="Recherche par lieux" type="text" autocomplete="off">
