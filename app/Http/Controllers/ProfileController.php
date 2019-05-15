@@ -7,6 +7,12 @@ use App\Models\User;
 
 class ProfileController extends Controller
 {
+        
+    public function __construct()
+    {
+        $this->middleware('ajax')->only('destroy');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -107,6 +113,8 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->authorize ('manage', $user);
+        $user->delete();
+        return response ()->json ();
     }
 }

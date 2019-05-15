@@ -3,7 +3,8 @@
     @component('components.card')
         @slot('title')
             @lang('Mon profil')
-            <a href="{{ route('profile.destroy', $user->id) }}" class="btn btn-danger btn-sm pull-right invisible" role="button" aria-disabled="true"><i class="fas fa-angry fa-lg"></i> @lang('Supprimer mon compte')</a>
+            
+            <a href="{{ route('profile.destroy', $user->id) }}" class="ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true"> @lang('Supprimer mon compte')</a>
         @endslot
         <label for="email">Adresse email</label> 
         <input id="email" type="email" class="text-white form-control-plaintext{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ Auth::user()->email }}" readonly>
@@ -67,3 +68,25 @@
     @endcomponent
 @endsection
 
+@section('script')
+    <script>
+     $('.delete').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm('Voulez-vous vraiment signaler?')){
+            $.ajax({
+                url: href,
+                type: 'GET'
+            })
+            .done((data) => {
+                alert(data.message)
+            })
+            .fail((data) => {
+                alert("Échec du signalement de l'image")
+            })
+        }
+ 
+    })
+
+</script>
+@endsection

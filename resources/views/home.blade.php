@@ -43,7 +43,7 @@
                            <form class="flag" method="POST" action="{{ url('imagesFlag/'.$image->id) }}">
                            @csrf
                         {{ method_field('PUT') }}
-                        <button type="submit">Sigaler l'image</button>
+                        <button type="submit">Signaler l'image</button>
 
                            </form>
                         @include('partials.delete')
