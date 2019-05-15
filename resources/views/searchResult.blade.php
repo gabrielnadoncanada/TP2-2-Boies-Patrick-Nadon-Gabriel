@@ -9,7 +9,7 @@
 
 <div class="card-columns">
             @foreach($images as $image)
-                <div class="card id="image{{ $image->id }}">
+                <div class="card" id="image{{ $image->id }}">
                     <a href="{{ url('images/' . $image->name) }}" class="image-link">
                         <img class="card-img-top"
                              src="{{ url('thumbs/' . $image->name) }}"

@@ -69,28 +69,36 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // $this->authorize ('manage', '$user');
+        $request->validate([
+            'name' => ['string', 'min:3', 'max:255', 'unique:users'],
+            'email' => ['string', 'email', 'max:255', 'unique:users'],
+            'password' => ['string', 'min:6', 'confirmed'],
+        ]);
+
         if($request->email){
             $user->update ([
                 'email' => $request->email,
                 
             ]);
+           
         }
         if($request->name){
             $user->update ([
                 'name' => $request->name,
                 
             ]);
+            
         }
         if($request->password){
             $user->update ([
                 'password' =>  bcrypt($request->password)
                 
             ]);
+            
         }
-        return back ()->with ('ok', __ ('Le profil a bien été mis à jour'));
+        return back ()->with ('status', __ ('Votre profil a bien été mis à jour'));
     }
-
+    // return redirect('/')->with('status', __
     /**
      * Remove the specified resource from storage.
      *
