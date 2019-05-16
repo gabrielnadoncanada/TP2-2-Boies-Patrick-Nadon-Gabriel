@@ -7,6 +7,10 @@
             <input class=" form-control" id="location" name="location" placeholder="Recherche par lieux" type="text" autocomplete="off">
 </form>
 
+<div class="d-flex justify-content-center mb-3">
+           
+           {{ $images->links() }}
+        </div>
 <div class="card-columns">
             @foreach($images as $image)
                 <div class="card" id="image{{ $image->id }}">

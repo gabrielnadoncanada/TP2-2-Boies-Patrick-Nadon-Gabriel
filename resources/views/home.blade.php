@@ -15,7 +15,7 @@
         @endif
         
         <div class="d-flex justify-content-center mb-3">
-           
+          
         </div>
         <div class="card-columns">
             @foreach($images as $image)
