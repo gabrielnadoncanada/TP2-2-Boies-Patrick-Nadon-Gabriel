@@ -81,8 +81,9 @@ class LocationController extends Controller
             $location->update([
                 'name' => $request->name,
             ]);
+            return back()->with('status', __('Le lieux a bien été mis à jour'));
         }
-        return back()->with('status', __('Le lieux a bien été mis à jour'));
+        return back()->with('status', __('Veuillez inscrire un lieux'));
     }
 
     /**
