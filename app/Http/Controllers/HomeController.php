@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\ImageRepository;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class HomeController extends Controller
 {
@@ -23,10 +24,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(ImageRepository $repository)
+    public function index(ImageRepository $repository, Request $request)
     {
-        $images = $repository->getAllImages ();
+        $images = $repository->getAllImages();
+        // dd($images);
         $images = $this->getReportedImage($images)->where('approved', 1);
+
+        $pageStart = request()->get('page', 1); // récupère le numéro de page dans l'url
+        $perPage = 6; // Défini le nombre d'image par page
+        
+        // Défini le décalage, si on est sur la 1ere page, $offset = 0
+        //si on est sur la 2eme page, $offset = 6
+        $offset = ($pageStart * $perPage) - $perPage; 
+        
+        // Instancie la class Paginator
+
+        $images = new Paginator(
+            array_slice($images->all(), $offset,  $perPage, true),
+            $images->count(),
+            $perPage,
+            null, 
+            [
+                'path'  => $request->url(),
+                'query' => $request->query(),
+            ]
+);
+
         return view ('home', compact ('images'));
 
     }

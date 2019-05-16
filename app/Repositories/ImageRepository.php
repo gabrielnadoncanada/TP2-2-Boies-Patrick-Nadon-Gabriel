@@ -5,7 +5,6 @@ use App\Models\Image;
 use App\Models\Location;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
-use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 
 class ImageRepository
 {
@@ -23,8 +22,9 @@ class ImageRepository
             'name' => $path
         ]);
     }
+
     public function getAllImages()
     {
-        return Image::inRandomOrder()->paginate(6);
+        return Image::inRandomOrder()->get();
     }
 }

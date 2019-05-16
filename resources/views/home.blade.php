@@ -14,9 +14,6 @@
             <h2 class="text-title mb-3">{{ __('Photos de ') . $user->name }}</h2>
         @endif
         
-        <div class="d-flex justify-content-center mb-3">
-          
-        </div>
         <div class="card-columns">
             @foreach($images as $image)
                 <div class="card" id="image{{ $image->id }}">
@@ -54,8 +51,8 @@
             @endforeach
             
         </div>
-        <div class="d-flex justify-content-center mt-3">
-          
+        <div class="d-flex justify-content-center my-5">
+        {{ $images->links() }}
         </div>
     </main>
 @endsection
