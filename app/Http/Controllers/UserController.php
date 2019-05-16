@@ -112,7 +112,7 @@ class UserController extends Controller
                 return back()->with('status', __('Vous ne pouvez pas supprimer un profil administrateur'));
             }
             $user->delete();
-            return redirect('/')->with('status', __('Le profil a été détruit'));
+            return back()->with('status', __('Le profil a été détruit'));
         } else {
             return redirect('/');
         }

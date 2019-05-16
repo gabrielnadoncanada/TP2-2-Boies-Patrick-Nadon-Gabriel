@@ -19,7 +19,7 @@ class LocationController extends Controller
     {
         // $locations = Location::orderBy('id')->paginate();
         // return View('images.create', compact('location'));
-        return view ('images.create');
+        return view('images.create');
     }
 
     /**
@@ -29,7 +29,6 @@ class LocationController extends Controller
      */
     public function create()
     {
-       
         $locations = Location::pluck('name', 'id');
         return view('location.create', compact('locations'));
     }
@@ -41,10 +40,10 @@ class LocationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(LocationRequest $request, LocationRepository $repository)
-{
-    $repository->store($request->all ());
-    return back()->with('ok', __("Le lieu a bien été enregistrée"));
-}
+    {
+        $repository->store($request->all());
+        return back()->with('ok', __("Le lieu a bien été enregistrée"));
+    }
 
     /**
      * Display the specified resource.
@@ -77,7 +76,13 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->name) {
+            $location = Location::find($id);
+            $location->update([
+                'name' => $request->name,
+            ]);
+        }
+        return back()->with('status', __('Le lieux a bien été mis à jour'));
     }
 
     /**
@@ -88,6 +93,12 @@ class LocationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $location = Location::withCount('images')->where('id', $id)->get();
+        if ($location[0]->images_count > 0) {
+            return back()->with('status', __("Vous ne pouvez pas supprimer un lieux qui est présentement en cours d'utilisation"));
+        } else {
+            $location[0]->delete();
+            return back()->with('status', __('Le lieux a été détruit'));
+        }
     }
 }

@@ -26,8 +26,11 @@ class AdminController extends Controller
     public function locations()
     {
         $locations = Location::all();
+      
         return view('admin.location', compact('locations'));
     }
+
+
 
     
 }
