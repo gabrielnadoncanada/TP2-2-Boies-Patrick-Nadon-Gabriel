@@ -27,8 +27,18 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->email_verified_at }}</td>
-                                <td>0</td>
-                                <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">@lang('Modifier')</button></td>
+                                <td>{{ $user->images_count }}</td>
+                                <td>
+                                @component('components.modal.button')
+                                    @slot('class')
+                                        @lang('btn-warning')
+                                    @endslot
+                                    @slot('id')
+                                        {{ $user->id }}
+                                    @endslot
+                                    @lang('Modifier')
+                                @endcomponent
+                                </td>
                                 <td><a href="{{ route('user_destroy', $user->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true">@lang('Supprimer')</a></td>
                                 
                             </tr>
@@ -40,5 +50,79 @@
         </div>
     </div>
 </div>
-
+@component('components.modal.modal')
+    @slot('title')
+        @lang('Modifier le profil')
+    @endslot
+    @slot('content')
+        <form method="POST" action="{{ route('user.update', $user->id) }}">
+            @csrf
+            @method('PUT')
+            @include('partials.form-group', [
+                'title' => __('Nouvelle adresse email'),
+                'type' => 'email',
+                'name' => 'email',
+                'required' => false
+            ])
+          
+            @component('components.button')
+                @slot('class')
+                    @lang('btn-primary')
+                @endslot
+                @lang('Envoyer')
+            @endcomponent
+        </form>
+        <br>
+        <form method="POST" action="{{ route('user.update', $user->id) }}">
+            @csrf
+            @method('PUT')
+            @include('partials.form-group', [
+                'title' => __('Nouveau nom utilisateur'),
+                'type' => 'text',
+                'name' => 'name',
+                'required' => false
+            ])
+          
+            @component('components.button')
+                @slot('class')
+                    @lang('btn-primary')
+                @endslot
+                @lang('Envoyer')
+            @endcomponent
+        </form>
+        <br>
+        <form method="POST" action="{{ route('user.update', $user->id) }}">
+            @csrf
+            @method('PUT')
+            @include('partials.form-group', [
+                'title' => __('Nouveau mot de pass'),
+                'type' => 'password',
+                'name' => 'password',
+                'required' => false
+               
+            ])
+          
+            @component('components.button')
+                @slot('class')
+                    @lang('btn-primary')
+                @endslot
+                @lang('Envoyer')
+            @endcomponent
+        </form>  
+    @endslot
+@endcomponent
+@endsection
+@section('script')
+    <script>
+     
+    $('#modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('id') 
+        // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('#email').val(recipient)
+    })
+</script>
 @endsection

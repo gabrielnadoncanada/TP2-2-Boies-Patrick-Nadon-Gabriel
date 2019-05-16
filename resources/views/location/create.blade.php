@@ -13,7 +13,10 @@
     'required' => true,
     ])
     @component('components.button')
-    @lang('Envoyer')
+    @slot('class')
+        btn-primary
+    @endslot    
+        @lang('Soumettre')
     @endcomponent
 </form>
 @endcomponent

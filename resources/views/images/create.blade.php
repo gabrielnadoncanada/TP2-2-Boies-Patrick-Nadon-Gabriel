@@ -32,7 +32,10 @@
         <!--  -->
     </div>
     @component('components.button')
-    @lang('Soumettre')
+    @slot('class')
+        btn-primary
+    @endslot    
+        @lang('Soumettre')
     @endcomponent
 </form>
 @endcomponent
