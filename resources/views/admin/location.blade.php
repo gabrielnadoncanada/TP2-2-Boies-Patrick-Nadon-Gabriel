@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col">
             <div class="card">
                 <div class="card-header">{{ __('Liste des lieux') }}</div>
                 <div class="card-body">

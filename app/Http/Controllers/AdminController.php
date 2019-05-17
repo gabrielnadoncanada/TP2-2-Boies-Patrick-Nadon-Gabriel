@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function user()
     {   
         $users = User::withCount('images')->get();
-        return view('admin.index', compact('users'));
+        return view('admin.user', compact('users'));
     }
 
     public function locations()

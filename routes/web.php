@@ -22,14 +22,22 @@ Route::get('imagesFlag/{id}', 'ImageController@flag');
 
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
-// Route::get('/', 'HomeController@index')->name('home');
-Route::get('/users', 'AdminController@index')->name('admin.users')->prefix('admin')->middleware('admin');
+
+Route::get('/users', 'AdminController@user')->name('admin.users')->prefix('admin')->middleware('admin');
+
+
 
 Route::get('/locations', 'AdminController@locations')->name('admin.locations')->prefix('admin')->middleware('admin');
 
 Route::get('/reported', 'AdminController@reported')->name('admin.reported')->prefix('admin')->middleware('admin');
 
 Route::get('/undo', 'AdminController@undo')->name('admin.undo')->prefix('admin')->middleware('admin');
+Route::put('/user/{id}', 'UserController@update')->prefix('admin')->middleware('admin');
+
+
+
+
+
 
 Route::middleware ('auth')->group (function () {
     Route::resource ('image', 'ImageController', [
@@ -55,6 +63,7 @@ Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete'
 Route::delete('/images/{id}', 'ImageController@delete');
 
 Route::get('/user/{id}/edit', 'UserController@edit')->name('user_edit');
+
 Route::get('/user/{id}/images', 'ImageController@user_images')->name('user_images');
 Route::get('/user/{id}/destroy', 'UserController@destroy')->name('user_destroy');
 Route::get('/location/{id}/destroy', 'LocationController@destroy')->name('location_destroy');

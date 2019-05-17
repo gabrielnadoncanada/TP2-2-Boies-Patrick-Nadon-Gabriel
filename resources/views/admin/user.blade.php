@@ -55,7 +55,7 @@
         @lang('Modifier le profil')
     @endslot
     @slot('content')
-        <form method="POST" action="{{ route('user.update', $user->id) }}">
+        <form method="POST" action="">
             @csrf
             @method('PUT')
             @include('partials.form-group', [
@@ -73,7 +73,7 @@
             @endcomponent
         </form>
         <br>
-        <form method="POST" action="{{ route('user.update', $user->id) }}">
+        <form method="POST" action="">
             @csrf
             @method('PUT')
             @include('partials.form-group', [
@@ -91,7 +91,7 @@
             @endcomponent
         </form>
         <br>
-        <form method="POST" action="{{ route('user.update', $user->id) }}">
+        <form method="POST" action="">
             @csrf
             @method('PUT')
             @include('partials.form-group', [
@@ -117,11 +117,8 @@
     $('.btn-edit').on('click', function() {
         var button = $(event.relatedTarget) 
         var recipient = $(this).data('id') 
-        
-        var path = "/../../users/";
-        
-        
-        $('form').attr('action', path + recipient)
+        var path = "/user/" + recipient;
+        $('form').attr('action', path )
     })
     
 </script>
