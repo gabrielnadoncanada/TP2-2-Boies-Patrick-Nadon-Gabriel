@@ -123,7 +123,6 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         @yield('script')
         <script>
-
             // prevent default click on the logout button
             $(() => {
                 $('#logout').click((e) => {
@@ -141,7 +140,7 @@
                 $('form').attr('action', path)
             })
 
-             // return current location id to the modal
+            // return current location id to the modal
             $('.btn-edit-location').on('click', function() {
                 var button = $(event.relatedTarget)
                 var recipient = $(this).data('id')
@@ -160,46 +159,6 @@
                     });
                 }
             });
-
-            // flag the current images
-            $('.flag').submit((e) => {
-                e.preventDefault();
-                let href = $(e.currentTarget).attr('action')
-                if (confirm('Voulez-vous vraiment signaler?')) {
-                    $.ajax({
-                            url: href,
-                            type: 'GET'
-                        })
-                        .done((data) => {
-                            alert(data.message)
-                        })
-                        .fail((data) => {
-                            alert("Échec du signalement de l'image")
-                        })
-                }
-            })
-
-            // custom lightbox
-            $(() => {
-                $('[data-toggle="tooltip"]').tooltip()
-                $('.card-columns').magnificPopup({
-                    delegate: 'a.image-link',
-                    type: 'image',
-                    tClose: '@lang("Fermer (Esc)")'
-                    @if($images - > count() > 1),
-                    gallery: {
-                        enabled: true,
-                        tPrev: '@lang("Précédent (Flèche gauche)")',
-                        tNext: '@lang("Suivant (Flèche droite)")'
-                    },
-                    callbacks: {
-                        buildControls: function() {
-                            this.contentContainer.append(this.arrowLeft.add(this.arrowRight))
-                        }
-                    }
-                    @endif
-                })
-            })
         </script>
 </body>
 

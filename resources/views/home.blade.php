@@ -46,3 +46,48 @@
     </div>
 </main>
 @endsection
+
+@section('script')
+<script>
+    // flag the current images
+    $('.flag').submit((e) => {
+        e.preventDefault();
+        let href = $(e.currentTarget).attr('action')
+        if (confirm('Voulez-vous vraiment signaler?')) {
+            $.ajax({
+                    url: href,
+                    type: 'GET'
+                })
+                .done((data) => {
+                    alert(data.message)
+                })
+                .fail((data) => {
+                    alert("Échec du signalement de l'image")
+                })
+        }
+    })
+
+    // custom lightbox
+    $(() => {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('.card-columns').magnificPopup({
+            delegate: 'a.image-link',
+            type: 'image',
+            tClose: '@lang("Fermer (Esc)")'
+            @if($images -> count() > 1),
+            gallery: {
+                enabled: true,
+                tPrev: '@lang("Précédent (Flèche gauche)")',
+                tNext: '@lang("Suivant (Flèche droite)")'
+            },
+            callbacks: {
+                buildControls: function() {
+                    this.contentContainer.append(this.arrowLeft.add(this.arrowRight))
+                }
+            }
+            @endif
+        })
+    })
+
+</script>
+@endsection    
