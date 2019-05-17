@@ -109,7 +109,7 @@
                 @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
-                </div>   
+                </div>
                 @endif
 
                 @if (session('status'))
@@ -137,6 +137,20 @@
                     $('#logout-form').submit()
                 })
                 $('[data-toggle="tooltip"]').tooltip()
+            })
+
+            $('.btn-edit-user').on('click', function() {
+                var button = $(event.relatedTarget)
+                var recipient = $(this).data('id')
+                var path = "/user/" + recipient;
+                $('form').attr('action', path)
+            })
+
+            $('.btn-edit-location').on('click', function() {
+                var button = $(event.relatedTarget)
+                var recipient = $(this).data('id')
+                var path = "/location/" + recipient;
+                $('form').attr('action', path)
             })
         </script>
 </body>

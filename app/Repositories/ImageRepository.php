@@ -27,4 +27,6 @@ class ImageRepository
     {
         return Image::all();
     }
+
+    
 }

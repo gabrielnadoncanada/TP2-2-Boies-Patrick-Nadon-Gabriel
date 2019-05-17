@@ -46,3 +46,12 @@ try {
     require('bootstrap');
     require('@fortawesome/fontawesome-free/js/all.js');
 } catch (e) {}
+
+$(() => {
+    $('#logout').click((e) => {
+        e.preventDefault()
+        $('#logout-form').submit()
+    })
+    $('[data-toggle="tooltip"]').tooltip()
+})
+

@@ -31,7 +31,7 @@
                                 <td>
                                 @component('components.modal.button')
                                     @slot('class')
-                                        @lang('btn-warning btn-edit')
+                                        @lang('btn-warning btn-edit-user')
                                     @endslot
                                     @slot('id')
                                         {{ $user->id }}
@@ -111,15 +111,4 @@
         </form>  
     @endslot
 @endcomponent
-@endsection
-@section('script')
-<script>
-    $('.btn-edit').on('click', function() {
-        var button = $(event.relatedTarget) 
-        var recipient = $(this).data('id') 
-        var path = "/user/" + recipient;
-        $('form').attr('action', path )
-    })
-    
-</script>
 @endsection
