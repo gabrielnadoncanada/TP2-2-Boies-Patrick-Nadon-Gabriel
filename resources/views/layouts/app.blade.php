@@ -98,39 +98,33 @@
                     </li>
                     @endauth
                     @endif
-
                 </ul>
             </div>
         </nav>
-
         <main class="pt-5 mt-5 ml-5">
             <div class="container">
-
                 @if(session()->has('message'))
                 <div class="alert alert-success">
                     {{ session()->get('message') }}
                 </div>
                 @endif
-
                 @if (session('status'))
                 <div class="alert alert-success">
                     {{ session('status') }}
                 </div>
                 @endif
                 @yield('content')
-
             </div>
         </main>
-
         <!-- Scripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js">
         </script>
         <script src="{{ asset('js/app.js') }}" defer></script>
-
-
         @yield('script')
         <script>
+
+            // prevent default click on the logout button
             $(() => {
                 $('#logout').click((e) => {
                     e.preventDefault()
@@ -139,6 +133,7 @@
                 $('[data-toggle="tooltip"]').tooltip()
             })
 
+            // return current user id to the modal
             $('.btn-edit-user').on('click', function() {
                 var button = $(event.relatedTarget)
                 var recipient = $(this).data('id')
@@ -146,11 +141,64 @@
                 $('form').attr('action', path)
             })
 
+             // return current location id to the modal
             $('.btn-edit-location').on('click', function() {
                 var button = $(event.relatedTarget)
                 var recipient = $(this).data('id')
                 var path = "/location/" + recipient;
                 $('form').attr('action', path)
+            })
+
+            // autocomplete user input in the search box
+            var route = "{{ url('autocomplete') }}";
+            $('#location').typeahead({
+                source: function(term, process) {
+                    return $.get(route, {
+                        term: term
+                    }, function(data) {
+                        return process(data);
+                    });
+                }
+            });
+
+            // flag the current images
+            $('.flag').submit((e) => {
+                e.preventDefault();
+                let href = $(e.currentTarget).attr('action')
+                if (confirm('Voulez-vous vraiment signaler?')) {
+                    $.ajax({
+                            url: href,
+                            type: 'GET'
+                        })
+                        .done((data) => {
+                            alert(data.message)
+                        })
+                        .fail((data) => {
+                            alert("Échec du signalement de l'image")
+                        })
+                }
+            })
+
+            // custom lightbox
+            $(() => {
+                $('[data-toggle="tooltip"]').tooltip()
+                $('.card-columns').magnificPopup({
+                    delegate: 'a.image-link',
+                    type: 'image',
+                    tClose: '@lang("Fermer (Esc)")'
+                    @if($images - > count() > 1),
+                    gallery: {
+                        enabled: true,
+                        tPrev: '@lang("Précédent (Flèche gauche)")',
+                        tNext: '@lang("Suivant (Flèche droite)")'
+                    },
+                    callbacks: {
+                        buildControls: function() {
+                            this.contentContainer.append(this.arrowLeft.add(this.arrowRight))
+                        }
+                    }
+                    @endif
+                })
             })
         </script>
 </body>
