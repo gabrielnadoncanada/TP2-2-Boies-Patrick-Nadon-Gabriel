@@ -31,7 +31,7 @@
                                 <td>
                                 @component('components.modal.button')
                                     @slot('class')
-                                        @lang('btn-warning')
+                                        @lang('btn-warning btn-edit')
                                     @endslot
                                     @slot('id')
                                         {{ $user->id }}
@@ -113,16 +113,16 @@
 @endcomponent
 @endsection
 @section('script')
-    <script>
-     
-    $('#modal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget) // Button that triggered the modal
-        var recipient = button.data('id') 
-        // Extract info from data-* attributes
-        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-        var modal = $(this)
-        modal.find('#email').val(recipient)
+<script>
+    $('.btn-edit').on('click', function() {
+        var button = $(event.relatedTarget) 
+        var recipient = $(this).data('id') 
+        
+        var path = "/../../users/";
+        
+        
+        $('form').attr('action', path + recipient)
     })
+    
 </script>
 @endsection

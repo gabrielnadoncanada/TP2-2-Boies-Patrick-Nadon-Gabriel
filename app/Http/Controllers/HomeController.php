@@ -27,62 +27,38 @@ class HomeController extends Controller
     public function index(ImageRepository $repository, Request $request)
     {
         $images = $repository->getAllImages();
-        // dd($images);
         $images = $this->getReportedImage($images)->where('approved', 1);
 
-        $pageStart = request()->get('page', 1); // récupère le numéro de page dans l'url
-        $perPage = 6; // Défini le nombre d'image par page
-        
+        // récupère le numéro de page dans l'url
+        $pageStart = request()->get('page', 1);
+
+        // Défini le nombre d'image par page
+        $perPage = 6;
+
         // Défini le décalage, si on est sur la 1ere page, $offset = 0
         //si on est sur la 2eme page, $offset = 6
-        $offset = ($pageStart * $perPage) - $perPage; 
-        
-        // Instancie la class Paginator
+        $offset = ($pageStart * $perPage) - $perPage;
 
+        // Instancie la class Paginator
         $images = new Paginator(
             array_slice($images->all(), $offset,  $perPage, true),
             $images->count(),
             $perPage,
-            null, 
+            null,
             [
                 'path'  => $request->url(),
                 'query' => $request->query(),
             ]
-);
-
-        return view ('home', compact ('images'));
-
+        );
+        return view('home', compact('images'));
     }
-
     public function getReportedImage($images)
     {
-        $images->transform(function($image) {
+        $images->transform(function ($image) {
             $number = $image->users->where('pivot.alert', 1)->count();
             $image->approved = ($number >= 2) ? 0 : 1;
-            // dd($image);
             return $image;
         });
         return $images;
-        // dd($images);
     }
-    
 }
-
-// public function index(ImageRepository $repository)
-// {
-//     $images = $repository->getAllImages ();
-//     $images = $this->getReportedImage($images)->where('approved', 1);
-//     return view ('home', compact('images'));
-
-// }
-
-// public function getReportedImage($images)
-// {
-//     $images->getCollection()->transform(function($image) {
-//         $number = $image->users->where('pivot.alert', 1)->count();
-//         $image->approved = ($number >= 1) ? 0 : 1;
-//         return $image;
-//     });
-//     return $images;
-
-// }

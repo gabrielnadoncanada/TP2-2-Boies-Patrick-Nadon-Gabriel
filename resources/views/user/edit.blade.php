@@ -9,6 +9,9 @@
                 @slot('class')
                     @lang('btn-warning')
                 @endslot
+                @slot('id')
+                                    
+                @endslot
                 @lang('Modifier')
             @endcomponent
         @endslot
@@ -33,7 +36,7 @@
                 'type' => 'email',
                 'name' => 'email',
                 'required' => false,
-                'value' => $user->email,
+                'value' => '',
             ])
           
             @component('components.button')
@@ -52,7 +55,7 @@
                 'type' => 'text',
                 'name' => 'name',
                 'required' => false,
-                'value' => $user->name,
+                'value' => '',
             ])
           
             @component('components.button')

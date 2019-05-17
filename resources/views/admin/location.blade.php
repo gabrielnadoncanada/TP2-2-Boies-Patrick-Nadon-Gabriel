@@ -69,9 +69,10 @@
 <script>
     $('.btn-edit').on('click', function() {
         var button = $(event.relatedTarget) 
-
-        var path = "http://127.0.0.1:8000/location/";
         var recipient = $(this).data('id') 
+        
+        var path = "/../../locations/";
+        
         
         $('form').attr('action', path + recipient)
     })

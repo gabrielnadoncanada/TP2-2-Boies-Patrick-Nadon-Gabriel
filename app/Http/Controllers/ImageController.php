@@ -25,9 +25,7 @@ class ImageController extends Controller
 
     public function index()
     {
-        
-        // $images = Image::inRandomOrder()->paginate(6);
-        // return View('/', compact('images'));
+        // 
     }
 
 

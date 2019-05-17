@@ -59,7 +59,7 @@
                             <a class="dropdown-item" href="{{ route('admin.locations') }}">
                                 @lang('Liste des lieux')
                             </a>
-                            <a class="dropdown-item" href="">
+                            <a class="dropdown-item" href="{{ route('admin.reported') }}">
                                 @lang('Images innapropriés')
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();

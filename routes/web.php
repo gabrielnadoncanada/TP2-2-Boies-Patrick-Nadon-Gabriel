@@ -20,12 +20,16 @@ Auth::routes(['verify' => true]);
 
 Route::get('imagesFlag/{id}', 'ImageController@flag');
 
+
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 // Route::get('/', 'HomeController@index')->name('home');
 Route::get('/users', 'AdminController@index')->name('admin.users')->prefix('admin')->middleware('admin');
 
 Route::get('/locations', 'AdminController@locations')->name('admin.locations')->prefix('admin')->middleware('admin');
 
+Route::get('/reported', 'AdminController@reported')->name('admin.reported')->prefix('admin')->middleware('admin');
+
+Route::get('/undo', 'AdminController@undo')->name('admin.undo')->prefix('admin')->middleware('admin');
 
 Route::middleware ('auth')->group (function () {
     Route::resource ('image', 'ImageController', [
