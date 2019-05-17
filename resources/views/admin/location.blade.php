@@ -70,12 +70,8 @@
     $('.btn-edit').on('click', function() {
         var button = $(event.relatedTarget) 
         var recipient = $(this).data('id') 
-        
-        var path = "/../../locations/";
-        
-        
-        $('form').attr('action', path + recipient)
+        var path = "/location/" + recipient;
+        $('form').attr('action', path)
     })
-    
 </script>
 @endsection

@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use App\Models\Image;
 
 class ImagesTableSeeder extends Seeder
 {

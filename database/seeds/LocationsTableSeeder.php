@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
+use App\Models\Location;
 
 class LocationsTableSeeder extends Seeder
 {
