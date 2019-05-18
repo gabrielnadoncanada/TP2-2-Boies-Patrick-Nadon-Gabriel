@@ -41655,3 +41655,4 @@ module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel_TP2/r
 /***/ })
 
 /******/ });
+

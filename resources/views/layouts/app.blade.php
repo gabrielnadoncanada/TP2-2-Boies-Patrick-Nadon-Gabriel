@@ -118,11 +118,33 @@
         </main>
         <!-- Scripts -->
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js">
-        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.11.1/dist/sweetalert2.all.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         @yield('script')
         <script>
+            $('form').submit(function(e){
+                e.preventDefault()
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        this.submit();
+                    }
+                })
+            })
+
             // prevent default click on the logout button
             $(() => {
                 $('#logout').click((e) => {
