@@ -1,5 +1,5 @@
 @auth
-<form action="{{ url('images/'.$image->id) }}" method="POST">
+<form class="delete" action="{{ url('images/'.$image->id) }}" method="POST">
     {{ csrf_field() }}
     {{ method_field('DELETE') }}
 

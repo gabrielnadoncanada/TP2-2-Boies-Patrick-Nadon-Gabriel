@@ -65,5 +65,5 @@ Route::delete('/images/{id}', 'ImageController@delete');
 Route::get('/user/{id}/edit', 'UserController@edit')->name('user_edit');
 
 Route::get('/user/{id}/images', 'ImageController@user_images')->name('user_images');
-Route::get('/user/{id}/destroy', 'UserController@destroy')->name('user_destroy');
+Route::delete('/user/{id}/destroy', 'UserController@destroy')->name('user_destroy');
 Route::get('/location/{id}/destroy', 'LocationController@destroy')->name('location_destroy');

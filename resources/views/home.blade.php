@@ -22,7 +22,7 @@
                     {{ $image->location->name }}
                 </div>
                 <em>
-                    <a href="#" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
+                    <a href="{{ url('user/' . $image->user_id . '/images') }}" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
                 </em>
                 <div class="pull-right">
                     <em>
@@ -35,7 +35,9 @@
                         {{ method_field('PUT') }}
                         <button type="submit">Signaler l'image</button>
                     </form>
-                    @include('partials.delete')
+                    @if ($image->user_id === Auth::user()->id or Auth::user()->role == "admin")
+                        @include('partials.delete')
+                    @endif    
                 </div>
             </div>
         </div>

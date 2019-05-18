@@ -4,7 +4,13 @@
         @slot('title')
             @lang('Mon profil')
             
-            <a href="{{ route('user_destroy', $user->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true"> @lang('Supprimer mon compte')</a>
+            <form class="delete" action="{{ route('user_destroy', $user->id) }}" method="POST">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger my-3">
+                    Supprimer
+                </button>
+            </form>
             @component('components.modal.button')
                 @slot('class')
                     @lang('btn-warning')
@@ -88,23 +94,6 @@
 @endcomponent
 @section('script')
     <script>
-     $('.delete').submit((e) => {
-        e.preventDefault();
-        let href = $(e.currentTarget).attr('action')
-        if (confirm('Voulez-vous vraiment suprimer?')){
-            $.ajax({
-                url: href,
-                type: 'GET'
-            })
-            .done((data) => {
-                alert(data.message)
-            })
-            .fail((data) => {
-                alert("Échec du signalement de la supression de l'image")
-            })
-        }
- 
-    })
     $('#modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget) // Button that triggered the modal
         var recipient = button.data('whatever') // Extract info from data-* attributes

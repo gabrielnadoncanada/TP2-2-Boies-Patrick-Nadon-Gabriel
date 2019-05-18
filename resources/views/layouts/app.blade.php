@@ -123,7 +123,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         @yield('script')
         <script>
-            $('form').submit(function(e){
+            $('.delete').submit(function(e){
                 e.preventDefault()
                 Swal.fire({
                     title: 'Are you sure?',
