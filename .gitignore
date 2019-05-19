@@ -3,7 +3,8 @@
 /public/storage
 /storage/*.key
 /vendor
-.env
+composer.lock
+package-lock.json
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

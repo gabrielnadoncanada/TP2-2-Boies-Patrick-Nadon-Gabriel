@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Location;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -15,7 +16,7 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function user()
+    public function users()
     {   
         $users = User::withCount('images')->get();
         return view('admin.user', compact('users'));
@@ -27,6 +28,16 @@ class AdminController extends Controller
         return view('admin.location', compact('locations'));
     }
 
+    public function getReportedImage($images)
+    {
+        $images->transform(function ($image) {
+            $number = $image->users->where('pivot.alert', 1)->count();
+            $image->approved = ($number >= 1) ? 0 : 1;
+            return $image;
+        });
+        return $images;
+    }
+
     public function reported(ImageRepository $repository)
     {
         $images = $repository->getAllImages();
@@ -34,18 +45,9 @@ class AdminController extends Controller
         return view('admin.reported', compact('images'));
     }
 
-    public function getReportedImage($images)
-    {
-        $images->transform(function ($image) {
-            $number = $image->users->where('pivot.alert', 1)->count();
-            $image->approved = ($number >= 2) ? 0 : 1;
-            return $image;
-        });
-        return $images;
-    }
-
-    public function undo($user, $image)
-    {
-        $image->users()->updateExistingPivot ($user->id, ['rating' => 0]);
+    public function undo($id)
+    {   
+        $image = DB::table('image_user')->where('image_id', $id)->delete();
+        return back();
     }
 }

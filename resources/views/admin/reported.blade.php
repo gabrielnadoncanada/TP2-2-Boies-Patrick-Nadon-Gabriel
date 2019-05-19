@@ -15,11 +15,13 @@
                     <a href="#" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
                 </em>
                 <div class="pull-right">
-                    <em>
-                    <a href="{{ route('admin.undo') }}">undo</a>
-                    </em>
-                </div>
-                <div class="pull-right">
+                    <form class="delete" action="{{ route('admin.undo', $image->id) }}" method="POST">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger my-3">
+                            undo
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

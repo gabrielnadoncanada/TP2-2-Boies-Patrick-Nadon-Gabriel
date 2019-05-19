@@ -15,28 +15,21 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Auth::routes(['verify' => true]);
 
-Route::get('imagesFlag/{id}', 'ImageController@flag');
 
-
-Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
-
-Route::get('/users', 'AdminController@user')->name('admin.users')->prefix('admin')->middleware('admin');
-
-
-
-Route::get('/locations', 'AdminController@locations')->name('admin.locations')->prefix('admin')->middleware('admin');
-
-Route::get('/reported', 'AdminController@reported')->name('admin.reported')->prefix('admin')->middleware('admin');
-
-Route::get('/undo', 'AdminController@undo')->name('admin.undo')->prefix('admin')->middleware('admin');
-Route::put('/user/{id}', 'UserController@update')->prefix('admin')->middleware('admin');
-
-
-
-
+// AdminController
+Route::middleware ('admin')->group (function () {
+    Route::prefix('admin')->group(function () {
+        Route::name('admin.')->group(function () {
+            Route::get('/users', 'AdminController@users')->name('users');
+            Route::get('/locations', 'AdminController@locations')->name('locations');
+            Route::get('/reported', 'AdminController@reported')->name('reported');
+            Route::delete('/undo/{id}', 'AdminController@undo')->name('undo');
+            Route::put('/user/{id}', 'UserController@update');
+        });
+    });
+});
 
 
 Route::middleware ('auth')->group (function () {
@@ -53,17 +46,14 @@ Route::middleware ('auth')->group (function () {
     ]);
 });
 
-Route::post('searchResult', 'ImageController@searchResult');
-
-
-
+Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('home', 'SearchController@index')->name('searchResult');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
-
+Route::get('imagesFlag/{id}', 'ImageController@flag');
 Route::delete('/images/{id}', 'ImageController@delete');
-
-Route::get('/user/{id}/edit', 'UserController@edit')->name('user_edit');
-
+Route::post('searchResult', 'ImageController@searchResult');
 Route::get('/user/{id}/images', 'ImageController@user_images')->name('user_images');
 Route::delete('/user/{id}/destroy', 'UserController@destroy')->name('user_destroy');
+
+Route::get('/user/{id}/edit', 'UserController@edit')->name('user_edit');
 Route::get('/location/{id}/destroy', 'LocationController@destroy')->name('location_destroy');
