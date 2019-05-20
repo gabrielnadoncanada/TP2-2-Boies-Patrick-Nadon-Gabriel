@@ -50,4 +50,13 @@ class AdminController extends Controller
         $image = DB::table('image_user')->where('image_id', $id)->delete();
         return back();
     }
+
+    public function destroyMany(ImageRepository $repository)
+    {
+        $images = $repository->getAllImages();
+        $images = $this->getReportedImage($images)->where('approved', 0);
+        $images->each->delete();
+        return back();
+       
+    }
 }

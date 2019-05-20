@@ -159,16 +159,6 @@
                         text: "Vous ne pourrez pas revenir en arrière! ",
                         confirmButtonText: 'Svp, clique moi'
                     },
-                    {
-                        title: 'Êtes-vous vraiment sûr?',
-                        text: "Vous ne pourrez peut-etre pas revenir en arrière! ",
-                        confirmButtonText: 'Svp, clique sur moi de nouveau'
-                    },
-                    {
-                        title: 'Êtes-vous completement sûr?',
-                        text: "Ok vous pouvez revenir en arrière. ",
-                        confirmButtonText: 'Svp, clique une derniere fois'
-                    }
                 ]).then((result) => {
                     if (result.value) {
                         Swal.fire(

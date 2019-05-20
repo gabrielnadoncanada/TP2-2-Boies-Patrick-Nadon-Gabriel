@@ -27,6 +27,7 @@ Route::middleware ('admin')->group (function () {
             Route::get('/reported', 'AdminController@reported')->name('reported');
             Route::delete('/undo/{id}', 'AdminController@undo')->name('undo');
             Route::put('/user/{id}', 'UserController@update');
+            Route::delete('/delete', 'AdminController@destroyMany')->name('destroyMany');
         });
     });
 });
