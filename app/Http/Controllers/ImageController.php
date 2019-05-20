@@ -156,7 +156,7 @@ class ImageController extends Controller
     public function delete($id)
     {
         $image = Image::destroy($id);
-        return redirect('/');
+        return back();
     }
 
     public function flag(Image $image, Request $request, $id)

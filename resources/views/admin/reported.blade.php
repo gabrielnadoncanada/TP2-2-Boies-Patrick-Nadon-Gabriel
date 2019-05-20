@@ -43,10 +43,13 @@
                     <form class="undo" action="{{ route('admin.undo', $image->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger my-3">
-                            undo
+                        <button type="submit" class="btn btn-success my-3">
+                            Autoriser
                         </button>
                     </form>
+                </div>
+                <div class="pull-right">
+                @include('partials.delete')
                 </div>
             </div>
         </div>
