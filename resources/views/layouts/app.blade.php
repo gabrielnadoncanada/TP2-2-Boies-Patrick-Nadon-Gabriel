@@ -157,13 +157,13 @@
                     {
                         title: 'Êtes-vous sûr?',
                         text: "Vous ne pourrez pas revenir en arrière! ",
-                        confirmButtonText: 'Svp, clique moi'
+                        confirmButtonText: 'Oui'
                     },
                 ]).then((result) => {
                     if (result.value) {
                         Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
+                            'Autoriser!',
+                            'Image a bien ete autoriser.',
                             'success'
                         )
                         this.submit();
