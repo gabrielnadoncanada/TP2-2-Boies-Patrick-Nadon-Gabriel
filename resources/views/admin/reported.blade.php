@@ -39,6 +39,10 @@
                 <em>
                     <a href="#" data-toggle="tooltip" title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
                 </em>
+                <br>
+                <em>
+                Image reportée: {{ $image->users->where('pivot.alert', 1)->count() }} fois
+                </em>
                 <div class="pull-right">
                     <form class="undo" action="{{ route('admin.undo', $image->id) }}" method="POST">
                         {{ csrf_field() }}
