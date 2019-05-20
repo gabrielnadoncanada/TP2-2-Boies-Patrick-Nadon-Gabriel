@@ -126,14 +126,50 @@
             $('.delete').submit(function(e){
                 e.preventDefault()
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
+                    title: 'Êtes-vous sûr?',
+                    text: "Vous ne pourrez pas revenir en arrière! ",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, delete it!'
                 }).then((result) => {
+                    if (result.value) {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        this.submit();
+                    }
+                })
+            })
+
+            $('.undo').submit(function(e){
+                e.preventDefault()
+                Swal.mixin({
+                    confirmButtonText: 'Next &rarr;',
+                    showCancelButton: true,
+                    type: 'warning',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                }).queue([
+                    {
+                        title: 'Êtes-vous sûr?',
+                        text: "Vous ne pourrez pas revenir en arrière! ",
+                        confirmButtonText: 'Svp, clique moi'
+                    },
+                    {
+                        title: 'Êtes-vous vraiment sûr?',
+                        text: "Vous ne pourrez peut-etre pas revenir en arrière! ",
+                        confirmButtonText: 'Svp, clique sur moi de nouveau'
+                    },
+                    {
+                        title: 'Êtes-vous completement sûr?',
+                        text: "Ok vous pouvez revenir en arrière. ",
+                        confirmButtonText: 'Svp, clique une derniere fois'
+                    }
+                ]).then((result) => {
                     if (result.value) {
                         Swal.fire(
                             'Deleted!',
