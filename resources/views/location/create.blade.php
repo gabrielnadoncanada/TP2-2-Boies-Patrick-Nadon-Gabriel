@@ -11,6 +11,7 @@
     'type' => 'text',
     'name' => 'name',
     'required' => true,
+    'minlength' => 0
     ])
     @component('components.button')
     @slot('class')

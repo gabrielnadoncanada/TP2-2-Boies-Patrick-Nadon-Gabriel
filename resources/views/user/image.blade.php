@@ -21,7 +21,7 @@
             @if (($image->users->where('pivot.alert', 1)->count()) > 0 )
             <div class="card bg-dark" id="image{{ $image->id }}">
             @else
-            <div class="card bg-dark" id="image{{ $image->id }}">
+            <div class="card bg-light" id="image{{ $image->id }}">
             @endif 
                 <img class="card-img-top" src="{{ url('thumbs/' . $image->name) }}" alt="image">
                 <div class="card-footer text-muted">

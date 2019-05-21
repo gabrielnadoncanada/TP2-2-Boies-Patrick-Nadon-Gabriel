@@ -43,6 +43,7 @@
                 'name' => 'email',
                 'required' => false,
                 'value' => '',
+                'minlength' => 0
             ])
           
             @component('components.button')
@@ -62,6 +63,7 @@
                 'name' => 'name',
                 'required' => false,
                 'value' => '',
+                'minlength' => 0
             ])
           
             @component('components.button')
@@ -80,6 +82,7 @@
                 'type' => 'password',
                 'name' => 'password',
                 'required' => false,
+                'minlength' => 6
                
             ])
           

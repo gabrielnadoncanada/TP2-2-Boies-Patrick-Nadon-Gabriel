@@ -39,8 +39,17 @@
                                     @lang('Modifier')
                                 @endcomponent
                                 </td>
-                                <td><a href="{{ route('user_destroy', $user->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true">@lang('Supprimer')</a></td>
-                                
+                                <td>
+                                <form class="delete" action="{{ url('user/'.$user->id) }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+
+                                    <button type="submit" class="btn btn-danger mb-3">
+                                        Supprimer
+                                    </button>
+                                </form>
+                                </td>
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -62,9 +71,10 @@
                 'title' => __('Nouvelle adresse email'),
                 'type' => 'email',
                 'name' => 'email',
-                'required' => false
+                'required' => false,
+                'minlength' => 0
             ])
-          
+
             @component('components.button')
                 @slot('class')
                     @lang('btn-primary')
@@ -80,9 +90,10 @@
                 'title' => __('Nouveau nom utilisateur'),
                 'type' => 'text',
                 'name' => 'name',
-                'required' => false
+                'required' => false,
+                'minlength' => 0
             ])
-          
+
             @component('components.button')
                 @slot('class')
                     @lang('btn-primary')
@@ -98,17 +109,17 @@
                 'title' => __('Nouveau mot de pass'),
                 'type' => 'password',
                 'name' => 'password',
-                'required' => false
-               
+                'required' => false,
+                'minlength' => 6,
             ])
-          
+
             @component('components.button')
                 @slot('class')
                     @lang('btn-primary')
                 @endslot
                 @lang('Envoyer')
             @endcomponent
-        </form>  
+        </form>
     @endslot
 @endcomponent
 @endsection

@@ -7,8 +7,6 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-
-
     /**
      * Display a listing of the resource.
      *
@@ -111,10 +109,14 @@ class UserController extends Controller
             if($user->role == 'admin'){
                 return back()->with('status', __('Vous ne pouvez pas supprimer un profil administrateur'));
             }
-            $user->delete();
-            return back()->with('status', __('Le profil a été détruit'));
+            if($user->delete())
+            {
+                $user->delete();
+                return redirect()->route('login')->with('status', __('Le profil a été détruit'));
+            }
+           
         } else {
-            return redirect('/');
+            return back();
         }
     }
 }

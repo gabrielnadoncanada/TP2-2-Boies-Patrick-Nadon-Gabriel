@@ -53,7 +53,8 @@
     'title' => __('Nouveau nom de lieux'),
     'type' => 'text',
     'name' => 'name',
-    'required' => false
+    'required' => false,
+    'minlength' => 0
     ])
     @component('components.button')
     @slot('class')

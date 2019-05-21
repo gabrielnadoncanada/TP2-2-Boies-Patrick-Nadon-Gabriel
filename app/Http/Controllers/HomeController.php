@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index(ImageRepository $repository, Request $request)
     {
-        $images = $repository->getAllImages();
+        $images = $repository->getAllImagesRandom();
         $images = $this->getReportedImage($images)->where('approved', 1);
 
         // récupère le numéro de page dans l'url

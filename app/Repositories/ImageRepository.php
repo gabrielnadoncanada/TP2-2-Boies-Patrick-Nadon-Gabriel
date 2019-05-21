@@ -28,5 +28,10 @@ class ImageRepository
         return Image::all();
     }
 
+    public function getAllImagesRandom()
+    {
+        return Image::inRandomOrder()->get();
+    }
+
     
 }
