@@ -77,7 +77,9 @@
                             </form>
                         </div>
                     </li>
-                   
+                    <li class="nav-item">
+                    @include('components.form-search')
+                    </li>
                     @else
                     @auth
                     <li class="nav-item dropdown mr-3">
