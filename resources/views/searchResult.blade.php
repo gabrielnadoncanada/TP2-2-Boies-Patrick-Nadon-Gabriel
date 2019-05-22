@@ -60,15 +60,6 @@
         })
     });
 
-    var route = "{{ url('autocomplete') }}";
-    $('#location').typeahead({
-        source: function(term, process) {
-            return $.get(route, {
-                term: term
-            }, function(data) {
-                return process(data);
-            });
-        }
-    });
+   
 </script>
 @endsection
