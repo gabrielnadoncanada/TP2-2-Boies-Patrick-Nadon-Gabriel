@@ -2,10 +2,7 @@
 @section('content')
 
 <div class="container mt-5">
-    <form class="mb-5" method="POST" action="/searchResult">
-        @csrf
-        <input class=" form-control" id="location" name="location" placeholder="Recherche par lieux" type="text" autocomplete="off">
-    </form>
+   
     <div class="card-columns">
         @foreach($images as $image)
         <div class="card" id="image{{ $image->id }}">
