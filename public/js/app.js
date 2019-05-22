@@ -41684,21 +41684,20 @@ $('.flag').submit(function (e) {
       _this3.submit();
     }
   });
-}); // animation du header
-
-var header_mini = false;
-$(window).scroll(function () {
-  var y_position = window.pageYOffset;
-  var y_menu = 50;
-
-  if (y_position > y_menu && !header_mini) {
-    $('#main-header').addClass('headerMini');
-    header_mini = true;
-  } else if (y_position < y_menu && header_mini) {
-    $('#main-header').removeClass('headerMini');
-    header_mini = false;
-  }
-});
+}); // // animation du header
+// var header_mini = false;
+// $(window).scroll(function() {
+//     var y_position = window.pageYOffset
+//     var y_menu = 50;
+//     if(y_position > y_menu && !header_mini) {
+//         $('#main-header').addClass('headerMini')
+//         header_mini = true
+//     }
+//     else if(y_position < y_menu && header_mini) {
+//         $('#main-header').removeClass('headerMini')
+//         header_mini = false
+//     }
+// })
 
 /***/ }),
 

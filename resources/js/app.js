@@ -116,23 +116,23 @@ $('.flag').submit(function(e){
     })
 })
 
-// animation du header
+// // animation du header
 
-var header_mini = false;
+// var header_mini = false;
 
-$(window).scroll(function() {
-    var y_position = window.pageYOffset
-    var y_menu = 50;
+// $(window).scroll(function() {
+//     var y_position = window.pageYOffset
+//     var y_menu = 50;
 
-    if(y_position > y_menu && !header_mini) {
-        $('#main-header').addClass('headerMini')
-        header_mini = true
-    }
-    else if(y_position < y_menu && header_mini) {
-        $('#main-header').removeClass('headerMini')
-        header_mini = false
-    }
-})
+//     if(y_position > y_menu && !header_mini) {
+//         $('#main-header').addClass('headerMini')
+//         header_mini = true
+//     }
+//     else if(y_position < y_menu && header_mini) {
+//         $('#main-header').removeClass('headerMini')
+//         header_mini = false
+//     }
+// })
 
 
 

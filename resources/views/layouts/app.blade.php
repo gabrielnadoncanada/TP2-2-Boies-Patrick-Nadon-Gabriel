@@ -19,7 +19,7 @@
 <body>
     <div id="app">
     
-        <nav id="main-header" class="custom_nav navbar fixed-top navbar-expand-lg navbar-light bg-secondary">
+        <nav id="main-header" class="custom_nav navbar navbar-expand-lg navbar-light bg-secondary">
             <img class="mr-2 logo" src="{{ asset('images/photo-album.svg') }}" style="width:60px;"></img>
             <a class="navbar-brand text-white" href="{{ route('home') }}">La Album</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
