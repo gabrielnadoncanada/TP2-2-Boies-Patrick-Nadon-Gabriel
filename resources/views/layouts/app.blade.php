@@ -18,6 +18,7 @@
 
 <body>
     <div id="app">
+    
         <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-secondary">
             <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Laravel-TP2') }}</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,6 +124,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         @yield('script')
         <script>
+            // Alerte lorque l'on veut détruire une image
             $('.delete').submit(function(e){
                 e.preventDefault()
                 Swal.fire({
@@ -207,6 +209,7 @@
                     });
                 }
             });
+
         </script>
 </body>
 
