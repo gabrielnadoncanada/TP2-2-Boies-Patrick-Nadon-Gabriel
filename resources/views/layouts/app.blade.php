@@ -19,8 +19,9 @@
 <body>
     <div id="app">
     
-        <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-secondary">
-            <a class="navbar-brand" href="{{ route('home') }}">{{ config('app.name', 'Laravel-TP2') }}</a>
+        <nav id="main-header" class="custom_nav navbar fixed-top navbar-expand-lg navbar-light bg-secondary">
+            <img class="mr-2 logo" src="{{ asset('images/photo-album.svg') }}" style="width:60px;"></img>
+            <a class="navbar-brand text-white" href="{{ route('home') }}">La Album</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -48,7 +49,11 @@
                     @endguest
 
                     @if(Auth::check() && Auth::user()->role == "admin")
+                    <li class="nav-item">
+                    @include('components.form-search')
+</li>
                     <li class="nav-item dropdown">
+                  
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
@@ -124,93 +129,18 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         @yield('script')
         <script>
-            // Alerte lorque l'on veut détruire une image
-            $('.delete').submit(function(e){
-                e.preventDefault()
-                Swal.fire({
-                    title: 'Êtes-vous sûr?',
-                    text: "Vous ne pourrez pas revenir en arrière! ",
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.value) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                        this.submit();
-                    }
-                })
-            })
-
-            $('.undo').submit(function(e){
-                e.preventDefault()
-                Swal.mixin({
-                    confirmButtonText: 'Next &rarr;',
-                    showCancelButton: true,
-                    type: 'warning',
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                }).queue([
-                    {
-                        title: 'Êtes-vous sûr?',
-                        text: "Vous ne pourrez pas revenir en arrière! ",
-                        confirmButtonText: 'Oui'
-                    },
-                ]).then((result) => {
-                    if (result.value) {
-                        Swal.fire(
-                            'Autoriser!',
-                            'Image a bien ete autoriser.',
-                            'success'
-                        )
-                        this.submit();
-                    }
-                })
-            })
-
-            // prevent default click on the logout button
-            $(() => {
-                $('#logout').click((e) => {
-                    e.preventDefault()
-                    $('#logout-form').submit()
-                })
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-
-            // return current user id to the modal
-            $('.btn-edit-user').on('click', function() {
-                var button = $(event.relatedTarget)
-                var recipient = $(this).data('id')
-                var path = "/user/" + recipient;
-                $('form').attr('action', path)
-            })
-
-            // return current location id to the modal
-            $('.btn-edit-location').on('click', function() {
-                var button = $(event.relatedTarget)
-                var recipient = $(this).data('id')
-                var path = "/location/" + recipient;
-                $('form').attr('action', path)
-            })
-
             // autocomplete user input in the search box
-            var route = "{{ url('autocomplete') }}";
-            $('#location').typeahead({
-                source: function(term, process) {
-                    return $.get(route, {
-                        term: term
-                    }, function(data) {
-                        return process(data);
-                    });
-                }
-            });
-
-        </script>
+var route = "{{ url('autocomplete') }}";
+$('#location').typeahead({
+    source: function(term, process) {
+        return $.get(route, {
+            term: term
+        }, function(data) {
+            return process(data);
+        });
+    }
+});
+            </script>
 </body>
 
 </html>

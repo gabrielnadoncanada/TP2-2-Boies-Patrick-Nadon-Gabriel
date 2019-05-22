@@ -41607,6 +41607,97 @@ $(function () {
     $('#logout-form').submit();
   });
   $('[data-toggle="tooltip"]').tooltip();
+}); // Alerte lorque l'on veut détruire une image
+
+$('.delete').submit(function (e) {
+  var _this = this;
+
+  e.preventDefault();
+  Swal.fire({
+    title: 'Êtes-vous sûr?',
+    text: "Vous ne pourrez pas revenir en arrière! ",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then(function (result) {
+    if (result.value) {
+      Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+
+      _this.submit();
+    }
+  });
+}); // Alerte lorque l'on autoriser une image
+
+$('.undo').submit(function (e) {
+  var _this2 = this;
+
+  e.preventDefault();
+  Swal.mixin({
+    confirmButtonText: 'Next &rarr;',
+    showCancelButton: true,
+    type: 'warning',
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33'
+  }).queue([{
+    title: 'Êtes-vous sûr?',
+    text: "Vous ne pourrez pas revenir en arrière! ",
+    confirmButtonText: 'Oui'
+  }]).then(function (result) {
+    if (result.value) {
+      Swal.fire('Autoriser!', 'Image a bien ete autoriser.', 'success');
+
+      _this2.submit();
+    }
+  });
+}); // Previent le click par defaut du boutton logout
+
+$(function () {
+  $('#logout').click(function (e) {
+    e.preventDefault();
+    $('#logout-form').submit();
+  });
+  $('[data-toggle="tooltip"]').tooltip();
+}); // retourne le user_id de l'utilisateur actuel au modal
+
+$('.btn-edit-user').on('click', function () {
+  var button = $(event.relatedTarget);
+  var recipient = $(this).data('id');
+  var path = "/user/" + recipient;
+  $('form').attr('action', path);
+}); // retourne le location_id du locations actuel au modal
+
+$('.btn-edit-location').on('click', function () {
+  var button = $(event.relatedTarget);
+  var recipient = $(this).data('id');
+  var path = "/location/" + recipient;
+  $('form').attr('action', path);
+}); // Alerte l'images  
+
+$('.flag').submit(function (e) {
+  var _this3 = this;
+
+  e.preventDefault();
+  Swal.fire('Êtes-vous sûr?', 'Vous ne pourrez pas revenir en arrière!', 'question').then(function (result) {
+    if (result.value) {
+      _this3.submit();
+    }
+  });
+}); // animation du header
+
+var header_mini = false;
+$(window).scroll(function () {
+  var y_position = window.pageYOffset;
+  var y_menu = 50;
+
+  if (y_position > y_menu && !header_mini) {
+    $('#main-header').addClass('headerMini');
+    header_mini = true;
+  } else if (y_position < y_menu && header_mini) {
+    $('#main-header').removeClass('headerMini');
+    header_mini = false;
+  }
 });
 
 /***/ }),
@@ -41629,8 +41720,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/TP2-2-Boies-Patrick-Nadon-Gabriel/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/TP2-2-Boies-Patrick-Nadon-Gabriel/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\gab\Documents\Etudes\programmation\TP2-2-Boies-Patrick-Nadon-Gabriel\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\gab\Documents\Etudes\programmation\TP2-2-Boies-Patrick-Nadon-Gabriel\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

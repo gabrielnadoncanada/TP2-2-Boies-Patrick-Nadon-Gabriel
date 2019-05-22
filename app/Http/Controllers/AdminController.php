@@ -54,6 +54,7 @@ class AdminController extends Controller
     public function destroyMany(ImageRepository $repository)
     {
         $images = $repository->getAllImages();
+        dd($images);
         $images = $this->getReportedImage($images)->where('approved', 0);
         $images->each->delete();
         return back();

@@ -12718,7 +12718,20 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
 }
 
 body {
-  padding-top: 50px;
+  padding-top: 8rem;
+}
+
+.container {
+  max-width: none !important;
+}
+
+.custom_nav {
+  height: 150px;
+  transition: 0.8s all;
+}
+
+.headerMini {
+  height: 100px;
 }
 
 .navbar-laravel {
