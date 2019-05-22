@@ -1,11 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <main class="container">
-    <form class="mb-5 form-inline" method="POST" action="/searchResult">
-        @csrf
-        <input class="form-control" id="location" name="location" placeholder="Recherche par lieux" type="text" autocomplete="off">
-        <button type="submit" class="form-control btn btn-primary">Rechercher</button>
-    </form>
+   
     @isset($location)
     <h2 class="text-title mb-3">{{ $location->name }}</h2>
     @endif
