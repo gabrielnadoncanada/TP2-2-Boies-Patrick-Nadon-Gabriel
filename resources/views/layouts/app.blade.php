@@ -26,8 +26,18 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    @auth
+                
+                <ul class="navbar-nav ml-auto">
+
+                    @guest
+                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a>
+                    </li>
+                    @endguest
+
+                    @if(Auth::check() && Auth::user()->role == "admin")
+                   
+                 
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('location.create') }}">
                             @lang('Ajouter un lieu')
@@ -38,21 +48,7 @@
                             @lang('Ajouter une image')
                         </a>
                     </li>
-                </ul>
-                @endauth
-                <ul class="navbar-nav ml-auto">
-
-                    @guest
-                    <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a>
-                    </li>
-                    @endguest
-
-                    @if(Auth::check() && Auth::user()->role == "admin")
-                    <li class="nav-item">
-                    @include('components.form-search')
-</li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown mr-3">
                   
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -77,6 +73,9 @@
                                 @csrf
                             </form>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                    @include('components.form-search')
                     </li>
                     @else
                     @auth
