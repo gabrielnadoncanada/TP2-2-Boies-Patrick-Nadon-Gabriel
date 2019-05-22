@@ -164,7 +164,7 @@ class ImageController extends Controller
         $images = Image::find($id);
         $user = $request->user()->id;
         $images->users()->syncWithoutDetaching([$user => ['alert' =>1]]);
-        return response()->json(['id' => $image->id, 'message' => 'L\'image a bien ete reportée'], 200);
+        return back();
     }
 
     public function getReportedImage($images)

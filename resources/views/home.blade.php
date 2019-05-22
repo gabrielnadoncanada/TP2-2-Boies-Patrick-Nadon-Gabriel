@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <main class="container">
-    <form class="mb-5" method="POST" action="/searchResult">
+    <form class="mb-5 form-inline" method="POST" action="/searchResult">
         @csrf
         <input class="form-control" id="location" name="location" placeholder="Recherche par lieux" type="text" autocomplete="off">
+        <button type="submit" class="form-control btn btn-primary">Rechercher</button>
     </form>
     @isset($location)
     <h2 class="text-title mb-3">{{ $location->name }}</h2>
@@ -33,7 +34,7 @@
                     <form class="flag" method="POST" action="{{ url('imagesFlag/'.$image->id) }}">
                         @csrf
                         {{ method_field('PUT') }}
-                        <button type="submit">Signaler l'image</button>
+                        <button class="btn btn-warning mt-3" type="submit">Signaler l'image</button>
                     </form>
                     @if ($image->user_id === Auth::user()->id or Auth::user()->role == "admin")
                         @include('partials.delete')
@@ -51,45 +52,7 @@
 
 @section('script')
 <script>
-    // flag the current images
-    $('.flag').submit((e) => {
-        e.preventDefault();
-        let href = $(e.currentTarget).attr('action')
-        if (confirm('Voulez-vous vraiment signaler?')) {
-            $.ajax({
-                    url: href,
-                    type: 'GET'
-                })
-                .done((data) => {
-                    alert(data.message)
-                })
-                .fail((data) => {
-                    alert("Échec du signalement de l'image")
-                })
-        }
-    })
-
-    // custom lightbox
-    $(() => {
-        $('[data-toggle="tooltip"]').tooltip()
-        $('.card-columns').magnificPopup({
-            delegate: 'a.image-link',
-            type: 'image',
-            tClose: '@lang("Fermer (Esc)")'
-            @if($images -> count() > 1),
-            gallery: {
-                enabled: true,
-                tPrev: '@lang("Précédent (Flèche gauche)")',
-                tNext: '@lang("Suivant (Flèche droite)")'
-            },
-            callbacks: {
-                buildControls: function() {
-                    this.contentContainer.append(this.arrowLeft.add(this.arrowRight))
-                }
-            }
-            @endif
-        })
-    })
+   
    
 </script>
 @endsection    

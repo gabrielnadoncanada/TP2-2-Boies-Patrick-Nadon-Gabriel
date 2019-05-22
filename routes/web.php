@@ -50,7 +50,7 @@ Route::middleware ('auth')->group (function () {
 Route::get('/', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('home', 'SearchController@index')->name('searchResult');
 Route::get('autocomplete', 'SearchController@autocomplete')->name('autocomplete');
-Route::get('imagesFlag/{id}', 'ImageController@flag');
+Route::put('imagesFlag/{id}', 'ImageController@flag');
 Route::delete('/images/{id}', 'ImageController@delete');
 Route::post('searchResult', 'ImageController@searchResult');
 Route::get('/user/{id}/images', 'ImageController@user_images')->name('user_images');
