@@ -38,6 +38,7 @@
 
 @section('script')
 <script>
+ // custom lightbox
     $(() => {
         $('[data-toggle="tooltip"]').tooltip()
         $('.card-columns').magnificPopup({

@@ -53,6 +53,27 @@
 @section('script')
 <script>
    
-   
+    // custom lightbox
+    $(() => {
+        $('[data-toggle="tooltip"]').tooltip()
+        $('.card-columns').magnificPopup({
+            delegate: 'a.image-link',
+            type: 'image',
+            tClose: '@lang("Fermer (Esc)")'
+            @if($images-> count() > 1),
+            gallery: {
+                enabled: true,
+                tPrev: '@lang("Précédent (Flèche gauche)")',
+                tNext: '@lang("Suivant (Flèche droite)")'
+            },
+            callbacks: {
+                buildControls: function() {
+                    this.contentContainer.append(this.arrowLeft.add(this.arrowRight))
+                }
+            }
+            @endif
+        })
+    });
+
 </script>
 @endsection    

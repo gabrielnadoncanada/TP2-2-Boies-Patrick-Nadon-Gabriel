@@ -147,6 +147,7 @@
                 })
             })
 
+            // Alerte lorque l'on autoriser une image
             $('.undo').submit(function(e){
                 e.preventDefault()
                 Swal.mixin({
@@ -173,7 +174,7 @@
                 })
             })
 
-            // prevent default click on the logout button
+            // Previent le click par defaut du boutton logout
             $(() => {
                 $('#logout').click((e) => {
                     e.preventDefault()
@@ -182,7 +183,7 @@
                 $('[data-toggle="tooltip"]').tooltip()
             })
 
-            // return current user id to the modal
+            // retourne le user_id de l'utilisateur actuel au modal
             $('.btn-edit-user').on('click', function() {
                 var button = $(event.relatedTarget)
                 var recipient = $(this).data('id')
@@ -190,7 +191,7 @@
                 $('form').attr('action', path)
             })
 
-            // return current location id to the modal
+            // retourne le location_id du locations actuel au modal
             $('.btn-edit-location').on('click', function() {
                 var button = $(event.relatedTarget)
                 var recipient = $(this).data('id')
@@ -210,19 +211,9 @@
                 }
             });
 
-
-             // flag the current images
+             // Alerte l'images  
             $('.flag').submit(function(e){
                 e.preventDefault()
-                // Swal.fire({
-                //     title: 'Êtes-vous sûr?',
-                //     text: "Vous ne pourrez pas revenir en arrière! ",
-                //     type: 'warning',
-                //     showCancelButton: true,
-                //     confirmButtonColor: '#3085d6',
-                //     cancelButtonColor: '#d33',
-                //     confirmButtonText: 'Yes, delete it!'
-                // })
                 Swal.fire(
                     'Êtes-vous sûr?',
                     'Vous ne pourrez pas revenir en arrière!',
@@ -232,54 +223,6 @@
                     if (result.value) {
                         this.submit();
                     }
-                })
-            })
-
-             // flag the current images
-            // $('.flag').submit((e) => {
-            //     e.preventDefault();
-            //     let href = $(e.currentTarget).attr('action')
-            //     Swal.fire({
-            //         title: 'Êtes-vous sûr?',
-            //         text: "Vous ne pourrez pas revenir en arrière! ",
-            //         type: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonColor: '#3085d6',
-            //         cancelButtonColor: '#d33',
-            //         confirmButtonText: 'Yes, delete it!'
-            //     })
-            //     $.ajax({
-            //             url: href,
-            //             type: 'GET'
-            //         })
-            //         .done((data) => {
-            //             alert(data.message)
-            //         })
-            //         .fail((data) => {
-            //             alert("Échec du signalement de l'image")
-            //         })
-               
-            // })
-
-            // custom lightbox
-            $(() => {
-                $('[data-toggle="tooltip"]').tooltip()
-                $('.card-columns').magnificPopup({
-                    delegate: 'a.image-link',
-                    type: 'image',
-                    tClose: '@lang("Fermer (Esc)")'
-                    @if($images -> count() > 1),
-                    gallery: {
-                        enabled: true,
-                        tPrev: '@lang("Précédent (Flèche gauche)")',
-                        tNext: '@lang("Suivant (Flèche droite)")'
-                    },
-                    callbacks: {
-                        buildControls: function() {
-                            this.contentContainer.append(this.arrowLeft.add(this.arrowRight))
-                        }
-                    }
-                    @endif
                 })
             })
         </script>
