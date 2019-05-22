@@ -34,10 +34,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a>
                     </li>
                     @endguest
-
-                    @if(Auth::check() && Auth::user()->role == "admin")
-                   
-                 
+                    @auth
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('location.create') }}">
                             @lang('Ajouter un lieu')
@@ -48,7 +45,13 @@
                             @lang('Ajouter une image')
                         </a>
                     </li>
-                    <li class="nav-item dropdown mr-3">
+                    
+                    @endauth
+                    @if(Auth::check() && Auth::user()->role == "admin")
+                   
+                 
+                   
+                    <li class="nav-item dropdown ">
                   
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -74,12 +77,10 @@
                             </form>
                         </div>
                     </li>
-                    <li class="nav-item">
-                    @include('components.form-search')
-                    </li>
+                   
                     @else
                     @auth
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown mr-3">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
@@ -100,6 +101,9 @@
                                 @csrf
                             </form>
                         </div>
+                    </li>
+                    <li class="nav-item">
+                    @include('components.form-search')
                     </li>
                     @endauth
                     @endif

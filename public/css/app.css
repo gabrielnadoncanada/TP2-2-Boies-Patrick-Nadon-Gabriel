@@ -12717,6 +12717,10 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   }
 }
 
+#main-header {
+  transition: 0.5s all;
+}
+
 .container {
   max-width: none !important;
 }

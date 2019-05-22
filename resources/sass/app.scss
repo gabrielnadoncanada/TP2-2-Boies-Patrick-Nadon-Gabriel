@@ -14,7 +14,9 @@
 // Sweetalert
 @import '~sweetalert2/src/sweetalert2.scss';
 
-
+#main-header {
+  transition: 0.5s all;
+}
 
 .container {
   max-width: none !important;
