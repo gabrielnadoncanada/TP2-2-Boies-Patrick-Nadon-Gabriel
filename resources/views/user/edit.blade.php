@@ -8,7 +8,7 @@
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-danger my-3">
-                    Supprimer
+                <i class="fas fa-trash fa-lg"></i>
                 </button>
             </form>
             @component('components.modal.button')
@@ -18,7 +18,7 @@
                 @slot('id')
                                     
                 @endslot
-                @lang('Modifier')
+                <i class="fas fa-edit fa-lg"></i>
             @endcomponent
         @endslot
         <label for="email">Adresse email</label> 
