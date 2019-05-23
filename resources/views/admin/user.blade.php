@@ -1,15 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('Liste utilisateurs') }}</div>
-                <div class="card-body">
-                    <table class="table">
+
+                <h3 class="text-light mb-4">{{ __('Liste des utilisateurs') }}</h3>
+
+                    <table class="text-center table table-striped table-dark table-bordered table-sm table-responsive-md">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
                                 <th scope="col">Nom d'utilisateur</th>
                                 <th scope="col">Courriel</th>
                                 <th scope="col">Date d'inscription</th>
@@ -21,9 +18,9 @@
                         </thead>
                         <tbody>
                             @foreach($users as $user)
-                            <tr>
-                                <th scope="row">{{ $user->id }}</th>
-                                <td>{{ $user->name }}</td>
+                            <tr >
+                                <th scope="row">{{ $user->name }}</th>
+
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->created_at }}</td>
                                 <td>{{ $user->email_verified_at }}</td>
@@ -42,7 +39,7 @@
                                     <i class="fas fa-edit fa-lg"></i>
                                 @endcomponent
                                 </td>
-                                <td>
+                                <td> 
                                 <form class="delete" action="{{ url('user/'.$user->id) }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
@@ -57,10 +54,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
+
 </div>
 @component('components.modal.modal')
     @slot('title')

@@ -1,12 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col">
-            <div class="card">
-                <div class="card-header">{{ __('Liste des lieux') }}</div>
-                <div class="card-body">
-                    <table class="table">
+                <h3 class="text-light mb-4">{{ __('Liste des lieux') }}</h3>
+                    <table class="text-center table table-striped table-dark table-bordered table-responsive-md">
                         <thead>
                             <tr>
                                 <th scope="col">Nom de l'emplacement</th>
@@ -34,10 +30,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 @component('components.modal.modal')
 @slot('title')
