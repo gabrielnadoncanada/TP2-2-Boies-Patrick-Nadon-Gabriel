@@ -18,7 +18,6 @@
 
 <body>
     <div id="app">
-    
         <nav id="main-header" class="custom_nav navbar navbar-expand-lg navbar-light bg-secondary">
             <img class="mr-2 logo" src="{{ asset('images/photo-album.svg') }}" style="width:60px;"></img>
             <a class="navbar-brand text-white" href="{{ route('home') }}">La Album</a>
@@ -26,9 +25,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                
-                <ul class="navbar-nav ml-auto">
-
+                <ul class="navbar-nav mr-auto">
                     @guest
                     <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">@lang('Connexion')</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">@lang('Inscription')</a>
@@ -45,18 +42,12 @@
                             @lang('Ajouter une image')
                         </a>
                     </li>
-                    
                     @endauth
                     @if(Auth::check() && Auth::user()->role == "admin")
-                   
-                 
-                   
                     <li class="nav-item dropdown ">
-                  
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('admin.users') }}">
                                 @lang('Liste des utilisateurs')
@@ -71,11 +62,9 @@
                                                      document.getElementById('logout-form').submit();">
                                 @lang('Me déconnecter')
                             </a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
-
                         </div>
                     </li>
                     <li class="nav-item">
@@ -89,7 +78,6 @@
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('user.edit', Auth::user()->id) }}">
                                 @lang('Mon profil')
@@ -98,7 +86,7 @@
                                 @lang('Mes photos')
                             </a>
                             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                   document.getElementById('logout-form').submit();">
                                 @lang('Me déconnecter')
                             </a>
 
@@ -107,12 +95,13 @@
                             </form>
                         </div>
                     </li>
-                   
-                    @include('components.form-search')
-                   
-                    @endauth
-                    @endif
+
+               
                 </ul>
+                @include('components.form-search')
+
+@endauth
+@endif
             </div>
         </nav>
         <main class="pt-5 mt-5">

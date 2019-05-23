@@ -32,7 +32,7 @@
         {{ $images->links() }}
     </div>
 </div>
-
+@endsection
 @section('script')
 <script>
  // custom lightbox
