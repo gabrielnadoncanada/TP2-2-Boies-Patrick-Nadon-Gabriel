@@ -138,16 +138,25 @@
         @yield('script')
         <script>
             // autocomplete user input in the search box
-var route = "{{ url('autocomplete') }}";
-$('#location').typeahead({
-    source: function(term, process) {
-        return $.get(route, {
-            term: term
-        }, function(data) {
-            return process(data);
-        });
-    }
-});
+            var route = "{{ url('autocomplete') }}";
+            $('#location').typeahead({
+                source: function(term, process) {
+                    return $.get(route, {
+                        term: term
+                    }, function(data) {
+                        return process(data);
+                    });
+                }
+            });
+
+             //Fonction pour "cliquer" sur sélectionner un choix dans la <div> de suggestions
+            $("#location").on("click", "span", function (e) {
+
+            if ($("#search-box").val($(this).html())) {
+            $("#search").click();
+            }
+
+            });
             </script>
 </body>
 
