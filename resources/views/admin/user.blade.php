@@ -33,10 +33,13 @@
                                     @slot('class')
                                         @lang('btn-warning btn-edit-user')
                                     @endslot
+                                    @slot('tooltip')
+                                        @lang('btn-warning btn-edit-user')
+                                    @endslot
                                     @slot('id')
                                         {{ $user->id }}
                                     @endslot
-                                    @lang('Modifier')
+                                    <i class="fas fa-edit fa-lg"></i>
                                 @endcomponent
                                 </td>
                                 <td>
@@ -44,8 +47,8 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 
-                                    <button type="submit" class="btn btn-danger mb-3">
-                                        Supprimer
+                                    <button type="submit" class="btn btn-danger mb-3" data-toggle="tooltip" title="@lang('Supprimer cette emplacement')">
+                                    <i class="fas fa-trash fa-lg"></i>
                                     </button>
                                 </form>
                                 </td>
