@@ -12754,3 +12754,13 @@ body.swal2-no-backdrop .swal2-shown.swal2-bottom-right {
   }
 }
 
+/*IMG*/
+
+img {
+  transition: all 1s ease;
+}
+
+img:hover {
+  -webkit-filter: grayscale(100%);
+}
+
