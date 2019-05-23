@@ -8,6 +8,7 @@
     @isset($user)
     <h2 class="text-title mb-3">{{ __('Photos de ') . $user->name }}</h2>
     @endif
+   
     <div class="card-columns">
         @foreach($images as $image)
         <div class="card" id="image{{ $image->id }}">
@@ -30,7 +31,9 @@
                     <form class="flag" method="POST" action="{{ url('imagesFlag/'.$image->id) }}">
                         @csrf
                         {{ method_field('PUT') }}
-                        <button class="btn btn-warning mt-3" type="submit">Signaler l'image</button>
+                        <button class="btn btn-warning mt-3" type="submit" data-toggle="tooltip" title="@lang('Signaler cette image')">
+                        <i class="fas fa-flag fa-lg"></i>
+                        </button>
                     </form>
                     @if ($image->user_id === Auth::user()->id or Auth::user()->role == "admin")
                         @include('partials.delete')

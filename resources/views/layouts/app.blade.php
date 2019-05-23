@@ -75,10 +75,13 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>
+
                         </div>
                     </li>
                     <li class="nav-item">
+                    <li class="nav-item">
                     @include('components.form-search')
+                    </li>
                     </li>
                     @else
                     @auth
@@ -104,9 +107,9 @@
                             </form>
                         </div>
                     </li>
-                    <li class="nav-item">
+                   
                     @include('components.form-search')
-                    </li>
+                   
                     @endauth
                     @endif
                 </ul>

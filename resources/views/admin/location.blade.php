@@ -26,10 +26,10 @@
                                     @slot('id')
                                     {{ $location->id }}
                                     @endslot
-                                    @lang('Modifier')
+                                    <i class="fas fa-edit fa-lg"></i>
                                     @endcomponent
                                 </td>
-                                <td><a href="{{ route('location_destroy', $location->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true">@lang('Supprimer')</a></td>
+                                <td><a href="{{ route('location_destroy', $location->id) }}" class="delete ml-auto btn btn-danger btn-sm" role="button" aria-disabled="true" data-toggle="tooltip" title="@lang('Supprimer cette emplacement')"> <i class="fas fa-trash fa-lg"></i></a></td>
                             </tr>
                             @endforeach
                         </tbody>
