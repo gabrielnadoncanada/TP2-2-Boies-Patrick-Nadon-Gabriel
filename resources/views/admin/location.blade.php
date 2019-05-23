@@ -9,7 +9,6 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Id</th>
                                 <th scope="col">Nom de l'emplacement</th>
                                 <th scope="col">Modifier l'emplacement</th>
                                 <th scope="col">Supprimer l'emplacement</th>
@@ -18,8 +17,7 @@
                         <tbody>
                             @foreach($locations as $location)
                             <tr>
-                                <th scope="row">{{ $location->id }}</th>
-                                <td>{{ $location->name }}</td>
+                                <th scope="row">{{ $location->name }}</th>
                                 <td>
                                     @component('components.modal.button')
                                     @slot('class')

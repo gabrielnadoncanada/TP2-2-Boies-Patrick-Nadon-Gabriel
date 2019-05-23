@@ -61,4 +61,6 @@ class HomeController extends Controller
         });
         return $images;
     }
+
+    
 }
