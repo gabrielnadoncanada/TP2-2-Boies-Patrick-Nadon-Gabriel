@@ -43,12 +43,12 @@
                 <em>
                 Image reportée: {{ $image->users->where('pivot.alert', 1)->count() }} fois
                 </em>
-                <div class="pull-right">
-                    <form class="undo" action="{{ route('admin.undo', $image->id) }}" method="POST">
+                <div class="">
+                    <form class="undo " action="{{ route('admin.undo', $image->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-success my-3">
-                            Autoriser
+                        <button type="submit" class="btn btn-success my-3" data-toggle="tooltip" title="{{ __('Authorizer cette image') }}">
+                        <i class="fas fa-check-square"></i>
                         </button>
                     </form>
                 </div>
