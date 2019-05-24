@@ -62,7 +62,7 @@
             delegate: 'a.image-link',
             type: 'image',
             tClose: '@lang("Fermer (Esc)")'
-            @if($images - > count() > 1),
+            @if($images -> count() > 1),
             gallery: {
                 enabled: true,
                 tPrev: '@lang("Précédent (Flèche gauche)")',
