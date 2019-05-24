@@ -19,7 +19,6 @@
 <body>
     <div id="app">
         <nav id="main-header" class="custom_nav navbar navbar-expand-lg navbar-light bg-secondary">
-            
             <a class="navbar-brand text-white" href="{{ route('home') }}">La Album</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -67,11 +66,8 @@
                             </form>
                         </div>
                     </li>
-                    <li class="nav-item">
-                    <li class="nav-item">
-                    @include('components.form-search')
-                    </li>
-                    </li>
+                    </ul>
+                    @include('components.form-search')      
                     @else
                     @auth
                     <li class="nav-item dropdown mr-3">
@@ -95,8 +91,8 @@
                             </form>
                         </div>
                     </li>
-                </ul>
-                @include('components.form-search')   
+                    </ul>
+                @include('components.form-search')
 @endauth
 @endif
             </div>
