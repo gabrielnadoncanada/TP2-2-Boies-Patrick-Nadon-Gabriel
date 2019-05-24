@@ -16,20 +16,20 @@
                 <img class="card-img-top" src="{{ url('thumbs/' . $image->name) }}" alt="image">
             </a>
             <div class="card-footer text-muted">
-                <div>
+                <div class="my-2">
                     {{ $image->location->name }}
                 </div>
-                <em>
+                <em class="mb-2">
                     <a href="{{ url('user/' . $image->user_id . '/images') }}" data-toggle="tooltip"
                         title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
                 </em>
-                <div class="pull-right">
+                <div class="mb-1">
                     <em>
                         {{ $image->created_at->formatLocalized('%x') }}
                     </em>
                 </div>
-                <div class="row">
-                    <form class="flag" method="POST" action="{{ url('imagesFlag/'.$image->id) }}">
+                <div class="row justify-content-end">
+                    <form class="flag mr-2" method="POST" action="{{ url('imagesFlag/'.$image->id) }}">
                         @csrf
                         {{ method_field('PUT') }}
                         <button class="btn btn-warning mt-3" type="submit" data-toggle="tooltip"
@@ -37,7 +37,7 @@
                             <i class="fas fa-flag fa-lg"></i>
                         </button>
                     </form>
-                    <div>
+                    <div class="mr-2">
                     @if ($image->user_id === Auth::user()->id or Auth::user()->role == "admin")
                     @include('partials.delete')
                     @endif

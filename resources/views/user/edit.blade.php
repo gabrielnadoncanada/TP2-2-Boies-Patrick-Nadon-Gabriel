@@ -7,7 +7,7 @@
             <form class="delete" action="{{ route('user_destroy', $user->id) }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
-                <button type="submit" class="btn btn-danger my-3">
+                <button type="submit" class="btn btn-danger my-3" >
                 <i class="fas fa-trash fa-lg"></i>
                 </button>
             </form>

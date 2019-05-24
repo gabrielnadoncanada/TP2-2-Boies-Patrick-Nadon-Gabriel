@@ -42,7 +42,7 @@
                         title="{{ __('Voir les photos de ') . $image->user->name }}">{{ $image->user->name }}</a>
                 </em>
                 <br>
-                <em class="mb-2" >
+                <em class="mb-1" >
                     Image reportée: {{ $image->users->where('pivot.alert', 1)->count() }} fois
                 </em>
                 <div class="row justify-content-end">

@@ -36,9 +36,11 @@
                             {{ $image->created_at->formatLocalized('%x') }}
                         </em>
                     </div>
+                    <div class="row justify-content-end pr-2">
                     @if ($image->user_id === Auth::user()->id or Auth::user()->role == "admin")
                     @include('partials.delete')
                     @endif
+                    </div>
                 </div>
 
         </div>
