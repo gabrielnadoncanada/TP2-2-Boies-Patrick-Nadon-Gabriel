@@ -2,7 +2,18 @@
 @section('content')
 
 <div class="container mt-5">
-   
+@if($images->count() === 0)
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                @component('components.card')
+                    @slot('title')
+                        @lang('Aucune images pour le moment')
+                    @endslot
+                    <a href="{{ route('home')}}" class="ml-auto btn btn-primary btn-sm" role="button" aria-disabled="true">@lang('Voir tout les images')</a>
+                @endcomponent
+            </div>    
+        </div> 
+    @else
     <div class="card-columns">
         @foreach($images as $image)
         <div class="card" id="image{{ $image->id }}">
@@ -32,6 +43,7 @@
         {{ $images->links() }}
     </div>
 </div>
+@endif
 @endsection
 @section('script')
 <script>
