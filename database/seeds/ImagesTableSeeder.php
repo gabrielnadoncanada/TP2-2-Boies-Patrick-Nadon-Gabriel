@@ -13,7 +13,7 @@ class ImagesTableSeeder extends Seeder
      */
     public function run()
     {   
-        for ($i=1; $i < 20; $i++) 
+        for ($i=1; $i < 10; $i++) 
         { 
             DB::table('images')->insert([
                 'location_id' => $i,
@@ -23,5 +23,17 @@ class ImagesTableSeeder extends Seeder
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ]);
         }
+        
+        for ($i=1; $i < 10; $i++) 
+        { 
+            DB::table('images')->insert([
+                'location_id' => $i,
+                'user_id' => $i,
+                'name' => 'placeholder_'.$i.'.jpeg',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            ]);
+        }
+        
     }
 }
