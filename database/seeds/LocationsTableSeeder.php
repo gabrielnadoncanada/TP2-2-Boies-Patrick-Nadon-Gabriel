@@ -15,7 +15,7 @@ class LocationsTableSeeder extends Seeder
     {
         
         // We insert some dummy data
-        $locations = array('Ottawa', 'Varadero', 'Jamaïque','Thaïlande', 'Cancun', 'Cannes', 'Montréal', 'Rome', 'Barcelone', 'Québec');
+        $locations = array('Ottawa', 'Varadero', 'Jamaïque','Thaïlande', 'Cancun', 'Cannes', 'Montréal', 'Rome', 'Québec', 'Barcelone');
 
 
         for ($i=0; $i < 10; $i++) 
